@@ -1,16 +1,19 @@
+import { useLanguage } from "../../hooks/useLanguage"
+
 type Props = {
   onNavigate: (page: "contact") => void
 }
 
 export function FinalCtaSection({ onNavigate }: Props) {
+  const { t } = useLanguage()
+  const cta = t.home.finalCta
+
   return (
     <div className="dark-cta">
-      <h2>Познакомимся?</h2>
-      <p>
-        Расскажите о вашем бизнесе — и мы вместе придумаем, как сделать его круче.
-      </p>
+      <h2>{cta.title}</h2>
+      <p>{cta.text}</p>
       <button className="btn-white" onClick={() => onNavigate("contact")}>
-        Написать нам →
+        {cta.button}
       </button>
     </div>
   )

@@ -1,11 +1,15 @@
+import { useLanguage } from "../hooks/useLanguage"
+
 type Props = {
   onGoHome: () => void
 }
 
 export function AnnounceBar({ onGoHome }: Props) {
+  const { t } = useLanguage()
+
   return (
     <div className="announce-bar">
-      🇰🇿 Казахстан создаёт Министерство ИИ —{" "}
+      {t.announce.text}{" "}
       <a
         onClick={onGoHome}
         role="button"
@@ -14,7 +18,7 @@ export function AnnounceBar({ onGoHome }: Props) {
           if (e.key === "Enter" || e.key === " ") onGoHome()
         }}
       >
-        Узнайте, как это влияет на ваш бизнес →
+        {t.announce.link}
       </a>
     </div>
   )

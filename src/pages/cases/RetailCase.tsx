@@ -1,9 +1,14 @@
+import { useLanguage } from "../../hooks/useLanguage"
+
 export function RetailCase() {
+  const { t } = useLanguage()
+  const data = t.cases.details.retail
+
   return (
     <>
       <div className="case-two-col">
         <div>
-          <div className="col-head">Задача</div>
+          <div className="col-head">{data.leftTitle}</div>
           <p
             style={{
               color: "var(--sub)",
@@ -12,39 +17,36 @@ export function RetailCase() {
               marginBottom: 20,
             }}
           >
-            Создать интерактивный инструмент для повышения лояльности через
-            геймификацию покупок.
+            {data.leftText}
           </p>
           <ul className="ul-clean">
-            <li>Вовлечь покупателей в программу лояльности</li>
-            <li>Стимулировать повторные покупки</li>
-            <li>Выдавать реальные купоны за достижения</li>
+            {data.leftItems.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
           </ul>
         </div>
         <div>
-          <div className="col-head">Решение</div>
+          <div className="col-head">{data.rightTitle}</div>
           <ul className="ul-clean">
-            <li>7 мобильных игр в единой экосистеме</li>
-            <li>Игровая карта с локациями и уровнями</li>
-            <li>Интеграция с программой лояльности</li>
-            <li>Прямое отслеживание эффективности</li>
-            <li>Постоянная аналитика активности</li>
+            {data.rightItems.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
           </ul>
         </div>
       </div>
 
-      <div className="col-head">Результаты</div>
+      <div className="col-head">{data.resultsTitle}</div>
       <ul className="ul-clean">
-        <li>Рост числа активных участников программы лояльности</li>
-        <li>Увеличение среднего чека и частоты покупок</li>
-        <li>Новый эмоциональный канал взаимодействия с брендом</li>
-        <li>Превращение в постоянный инструмент клиентского маркетинга</li>
+        {data.results.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
       </ul>
       <div className="tech-chips">
-        <div className="tech-chip">🎮 Геймификация</div>
-        <div className="tech-chip">📱 Мобильные игры</div>
-        <div className="tech-chip">🎁 Программа лояльности</div>
-        <div className="tech-chip">📈 Аналитика</div>
+        {data.chips.map((chip) => (
+          <div className="tech-chip" key={chip}>
+            {chip}
+          </div>
+        ))}
       </div>
     </>
   )

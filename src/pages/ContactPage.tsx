@@ -2,6 +2,7 @@ import { Instagram, Linkedin, MessageCircle, Send } from "lucide-react"
 import type { FormEvent } from "react"
 import { useState } from "react"
 import { Footer } from "../components/Footer"
+import { useLanguage } from "../hooks/useLanguage"
 import type { LeadPayload } from "../types"
 
 const initialForm: LeadPayload = {
@@ -13,6 +14,9 @@ const initialForm: LeadPayload = {
 }
 
 export function ContactPage() {
+  const { t } = useLanguage()
+  const copy = t.contact
+  const formCopy = copy.form
   const [form, setForm] = useState<LeadPayload>(initialForm)
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
     "idle",
@@ -34,7 +38,7 @@ export function ContactPage() {
       const data = (await res.json()) as { ok: boolean; error?: string }
       if (!res.ok || !data.ok) {
         setStatus("error")
-        setError(data.error || "Не удалось отправить заявку.")
+        setError(data.error || formCopy.errorFallback)
         return
       }
 
@@ -42,7 +46,7 @@ export function ContactPage() {
       setForm(initialForm)
     } catch {
       setStatus("error")
-      setError("Не удалось отправить заявку. Проверьте соединение.")
+      setError(formCopy.errorConnection)
     }
   }
 
@@ -60,17 +64,14 @@ export function ContactPage() {
               marginBottom: 32,
             }}
           >
-            Контакты
+            {copy.tag}
           </div>
           <h1>
-            Давайте
+            {copy.titleTop}
             <br />
-            <span>познакомимся.</span>
+            <span>{copy.titleBottom}</span>
           </h1>
-          <p>
-            Расскажите о вашем бизнесе — и мы вместе придумаем, как сделать его
-            круче. Мы всегда на связи.
-          </p>
+          <p>{copy.subtitle}</p>
           <a href="tel:+77018771414" className="phone-link">
             +7 701 877 1414
           </a>
@@ -151,15 +152,15 @@ export function ContactPage() {
         </div>
 
         <div className="contact-right">
-          <h2>Расскажите о проекте</h2>
+          <h2>{copy.projectTitle}</h2>
 
           <form onSubmit={submitLead}>
             <div className="form-2col">
               <div className="form-group">
-                <label>Имя</label>
+                  <label>{formCopy.name}</label>
                 <input
                   type="text"
-                  placeholder="Ваше имя"
+                    placeholder={formCopy.namePlaceholder}
                   value={form.name}
                   required
                   onChange={(e) =>
@@ -168,10 +169,10 @@ export function ContactPage() {
                 />
               </div>
               <div className="form-group">
-                <label>Компания</label>
+                  <label>{formCopy.company}</label>
                 <input
                   type="text"
-                  placeholder="Название компании"
+                    placeholder={formCopy.companyPlaceholder}
                   value={form.company}
                   required
                   onChange={(e) =>
@@ -182,7 +183,7 @@ export function ContactPage() {
             </div>
 
             <div className="form-group">
-              <label>Email</label>
+              <label>{formCopy.email}</label>
               <input
                 type="email"
                 placeholder="email@company.com"
@@ -195,7 +196,7 @@ export function ContactPage() {
             </div>
 
             <div className="form-group">
-              <label>Отрасль</label>
+              <label>{formCopy.industry}</label>
               <select
                 value={form.industry}
                 required
@@ -203,19 +204,17 @@ export function ContactPage() {
                   setForm((s) => ({ ...s, industry: e.target.value }))
                 }
               >
-                <option value="">Выберите отрасль</option>
-                <option>Строительство</option>
-                <option>Нефтегаз</option>
-                <option>Ритейл</option>
-                <option>Энергетика</option>
-                <option>Другое</option>
+                <option value="">{formCopy.industryPlaceholder}</option>
+                {formCopy.industries.map((industry) => (
+                  <option key={industry}>{industry}</option>
+                ))}
               </select>
             </div>
 
             <div className="form-group">
-              <label>О задаче</label>
+              <label>{formCopy.message}</label>
               <textarea
-                placeholder="Расскажите о вашем проекте..."
+                placeholder={formCopy.messagePlaceholder}
                 value={form.message}
                 required
                 onChange={(e) =>
@@ -229,17 +228,17 @@ export function ContactPage() {
               style={{ width: "100%" }}
               disabled={status === "loading"}
             >
-              {status === "loading" ? "Отправляем..." : "Отправить заявку →"}
+              {status === "loading" ? formCopy.submitting : formCopy.submit}
             </button>
 
             {status === "success" && (
               <p style={{ marginTop: 14, fontSize: 13, color: "var(--sub)" }}>
-                Спасибо! Мы свяжемся с вами в ближайшее время.
+                {formCopy.success}
               </p>
             )}
             {status === "error" && (
               <p style={{ marginTop: 14, fontSize: 13, color: "#b91c1c" }}>
-                {error || "Не удалось отправить заявку."}
+                {error || formCopy.errorFallback}
               </p>
             )}
 
@@ -251,7 +250,7 @@ export function ContactPage() {
                 textAlign: "center",
               }}
             >
-              Или напрямую:{" "}
+              {formCopy.direct}{" "}
               <a
                 href="tel:+77018771414"
                 style={{ color: "var(--blue)", fontWeight: 800 }}

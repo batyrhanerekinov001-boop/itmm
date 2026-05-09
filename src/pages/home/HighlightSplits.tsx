@@ -1,40 +1,40 @@
 import type { CaseId } from "../../types"
+import { useLanguage } from "../../hooks/useLanguage"
 
 type Props = {
   onShowCase: (id: CaseId) => void
 }
 
 export function HighlightSplits({ onShowCase }: Props) {
+  const { t } = useLanguage()
+  const section = t.home.highlights
+
   return (
     <>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <div className="split-section">
           <div className="split-content">
             <div className="section-eyebrow">
-              Строительство · Кросс-платформенно
+              {section.construction.eyebrow}
             </div>
             <div className="section-title">
-              Современная платформа управления подрядчиками.
+              {section.construction.title}
             </div>
-            <p>
-              Единственная платформа, созданная специально для крупного
-              девелопера. Полная замена бумажного документооборота, интеграция с
-              1С.
-            </p>
+            <p>{section.construction.text}</p>
             <div className="results-chips">
               <div className="chip">
-                <span className="cv">4×</span> ускорение
+                <span className="cv">4×</span> {section.construction.chips[0]}
               </div>
               <div className="chip">
-                <span className="cv">1000+</span> актов/мес
+                <span className="cv">1000+</span> {section.construction.chips[1]}
               </div>
               <div className="chip">
-                <span className="cv">145М₽</span> экономия
+                <span className="cv">145М₽</span> {section.construction.chips[2]}
               </div>
             </div>
             <div style={{ marginTop: 24 }}>
               <button className="btn-link" onClick={() => onShowCase("construction")}>
-                Читать кейс →
+                {section.construction.button}
               </button>
             </div>
           </div>
@@ -52,7 +52,7 @@ export function HighlightSplits({ onShowCase }: Props) {
                   marginBottom: 10,
                 }}
               >
-                Личный кабинет подрядчика
+                {section.construction.mockTitle}
               </div>
               <div className="mock-row" style={{ width: "80%" }}></div>
               <div className="mock-row" style={{ width: "60%" }}></div>
@@ -77,17 +77,13 @@ export function HighlightSplits({ onShowCase }: Props) {
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div className="split-section reverse">
             <div className="split-content">
-              <div className="section-eyebrow">Нефтегаз · Teboil</div>
+              <div className="section-eyebrow">{section.oil.eyebrow}</div>
               <div className="section-title">
-                Учитывайте разницу между ручным и цифровым учётом.
+                {section.oil.title}
               </div>
-              <p>
-                Узнайте, как избавиться от ручного ввода данных, обеспечить
-                соответствие нормам ЕС и повысить прозрачность операций на всех
-                терминалах.
-              </p>
+              <p>{section.oil.text}</p>
               <button className="btn-link" onClick={() => onShowCase("oil")}>
-                Читать кейс →
+                {section.oil.button}
               </button>
             </div>
             <div className="split-visual sv-orange">
@@ -100,10 +96,10 @@ export function HighlightSplits({ onShowCase }: Props) {
                   textAlign: "center",
                 }}
               >
-                Teboil · Учёт нефтепродуктов
+                {section.oil.visualTitle}
               </div>
               <div style={{ color: "rgba(255,255,255,0.5)", fontSize: 13 }}>
-                Нормы ЕС · Real-time мониторинг
+                {section.oil.visualSub}
               </div>
             </div>
           </div>

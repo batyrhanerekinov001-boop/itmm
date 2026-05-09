@@ -1,32 +1,33 @@
 import type { CaseId } from "../../types"
+import { useLanguage } from "../../hooks/useLanguage"
 
 type Props = {
   onShowCase: (id: CaseId) => void
 }
 
 export function TopCasesSection({ onShowCase }: Props) {
+  const { t } = useLanguage()
+  const section = t.home.topCases
+
   return (
     <div className="section-wrap">
-      <div className="section-eyebrow">Топ кейсы</div>
+      <div className="section-eyebrow">{section.eyebrow}</div>
       <div className="section-title">
-        Строить крутые продукты
+        {section.title[0]}
         <br />
-        не должно быть сложно.
+        {section.title[1]}
       </div>
 
       <div className="blog-grid">
         <div className="blog-card" onClick={() => onShowCase("construction")}>
           <div className="blog-card-img g1">
             <span>🏗️</span>
-            <div className="big-num">ЛКП</div>
+            <div className="big-num">B2B</div>
           </div>
           <div className="blog-card-body">
-            <div className="blog-card-label">Строительство</div>
-            <h3>
-              Личный кабинет подрядчика — цифровой документооборот для топ-5
-              девелопера России
-            </h3>
-            <p>Ускорение согласования в 4× и экономия 145М₽ в год.</p>
+            <div className="blog-card-label">{section.cards[0].label}</div>
+            <h3>{section.cards[0].title}</h3>
+            <p>{section.cards[0].subtitle}</p>
           </div>
         </div>
 
@@ -37,8 +38,8 @@ export function TopCasesSection({ onShowCase }: Props) {
             </div>
           </div>
           <div className="blog-card-body">
-            <div className="blog-card-label">Нефтегаз · Teboil</div>
-            <h3>Система учёта нефтепродуктов — соответствие нормам ЕС</h3>
+            <div className="blog-card-label">{section.cards[1].label}</div>
+            <h3>{section.cards[1].title}</h3>
           </div>
         </div>
 
@@ -49,8 +50,8 @@ export function TopCasesSection({ onShowCase }: Props) {
             </div>
           </div>
           <div className="blog-card-body">
-            <div className="blog-card-label">Ритейл</div>
-            <h3>Игровая экосистема — геймификация для сети супермаркетов</h3>
+            <div className="blog-card-label">{section.cards[2].label}</div>
+            <h3>{section.cards[2].title}</h3>
           </div>
         </div>
       </div>

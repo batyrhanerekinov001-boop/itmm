@@ -1,31 +1,33 @@
+import { useLanguage } from "../../hooks/useLanguage"
+
 type Props = {
   onNavigate: (page: "cases" | "contact") => void
 }
 
 export function HeroSection({ onNavigate }: Props) {
+  const { t } = useLanguage()
+  const hero = t.home.hero
+
   return (
     <>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <div className="hero">
           <div className="hero-content">
-            <div className="hero-eyebrow">🇰🇿 Казахстанская IT-компания</div>
+            <div className="hero-eyebrow">{hero.eyebrow}</div>
             <h1>
-              Новый способ
+              {hero.title[0]}
               <br />
-              строить
+              {hero.title[1]}
               <br />
-              <em>умный бизнес.</em>
+              <em>{hero.title[2]}</em>
             </h1>
-            <p className="hero-sub">
-              ITMM внедряет ИИ и цифровые решения, чтобы средний и крупный бизнес
-              выигрывал конкуренцию и рос быстрее.
-            </p>
+            <p className="hero-sub">{hero.subtitle}</p>
             <div className="hero-actions">
               <button className="btn-primary" onClick={() => onNavigate("cases")}>
-                Смотреть кейсы
+                {hero.casesButton}
               </button>
               <button className="btn-outline" onClick={() => onNavigate("contact")}>
-                Обсудить проект
+                {hero.discussButton}
               </button>
             </div>
           </div>
@@ -43,9 +45,9 @@ export function HeroSection({ onNavigate }: Props) {
                     lineHeight: 1.2,
                   }}
                 >
-                  Строительство
+                  {hero.cards[0].top}
                 </div>
-                <div>145М₽ экономии/год</div>
+                <div>{hero.cards[0].bottom}</div>
               </div>
             </div>
             <div className="hero-card-float c2">
@@ -59,9 +61,9 @@ export function HeroSection({ onNavigate }: Props) {
                     lineHeight: 1.2,
                   }}
                 >
-                  Teboil · Нефтегаз
+                  {hero.cards[1].top}
                 </div>
-                <div>Автоматизация 80%</div>
+                <div>{hero.cards[1].bottom}</div>
               </div>
             </div>
             <div className="hero-card-float c3">
@@ -75,9 +77,9 @@ export function HeroSection({ onNavigate }: Props) {
                     lineHeight: 1.2,
                   }}
                 >
-                  Ритейл · Геймификация
+                  {hero.cards[2].top}
                 </div>
-                <div>7 игр за 1 год</div>
+                <div>{hero.cards[2].bottom}</div>
               </div>
             </div>
           </div>
@@ -85,7 +87,7 @@ export function HeroSection({ onNavigate }: Props) {
       </div>
 
       <div className="logos-section">
-        <div className="logos-label">Реализовано для ведущих компаний</div>
+        <div className="logos-label">{hero.logosLabel}</div>
         <div className="logos-row">
           <div className="logo-item">TEBOIL</div>
           <div className="logo-item">TOP‑5 DEV</div>

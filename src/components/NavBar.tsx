@@ -1,5 +1,7 @@
 import { Menu, X } from "lucide-react"
 import { useState } from "react"
+import { useLanguage } from "../hooks/useLanguage"
+import type { Language } from "../i18n/translations"
 import type { PageId } from "../types"
 
 type Props = {
@@ -9,6 +11,28 @@ type Props = {
 
 export function NavBar({ page, onNavigate }: Props) {
   const [open, setOpen] = useState(false)
+  const { language, setLanguage, t } = useLanguage()
+
+  const languages: Language[] = ["KZ", "RU", "EN"]
+
+  function renderLanguageSwitch() {
+    return (
+      <div className="lang-switch" aria-label="language switcher">
+        {languages.map((lang, index) => (
+          <span key={lang} className="lang-switch-item">
+            <button
+              type="button"
+              className={`lang-btn${language === lang ? " active" : ""}`}
+              onClick={() => setLanguage(lang)}
+            >
+              {lang}
+            </button>
+            {index < languages.length - 1 && <span className="lang-sep">/</span>}
+          </span>
+        ))}
+      </div>
+    )
+  }
 
   return (
     <>
@@ -29,7 +53,7 @@ export function NavBar({ page, onNavigate }: Props) {
               onClick={() => onNavigate("home")}
               className={page === "home" ? "active" : undefined}
             >
-              Платформа
+              {t.nav.platform}
             </button>
           </li>
           <li>
@@ -37,12 +61,12 @@ export function NavBar({ page, onNavigate }: Props) {
               onClick={() => onNavigate("cases")}
               className={page === "cases" ? "active" : undefined}
             >
-              Кейсы
+              {t.nav.cases}
             </button>
           </li>
           <li>
             <button onClick={() => onNavigate("contact")} className="nav-cta">
-              Написать нам
+              {t.nav.contact}
             </button>
           </li>
         </ul>
@@ -51,10 +75,11 @@ export function NavBar({ page, onNavigate }: Props) {
           <a className="nav-phone" href="tel:+77018771414">
             +7 701 877 14 14
           </a>
+          {renderLanguageSwitch()}
 
           <button
             className="nav-hamburger"
-            aria-label="Открыть меню"
+            aria-label={t.nav.openMenu}
             onClick={() => setOpen(true)}
           >
             <Menu size={20} />
@@ -82,7 +107,7 @@ export function NavBar({ page, onNavigate }: Props) {
               </div>
               <button
                 className="nav-hamburger"
-                aria-label="Закрыть меню"
+                aria-label={t.nav.closeMenu}
                 onClick={() => setOpen(false)}
               >
                 <X size={20} />
@@ -97,7 +122,7 @@ export function NavBar({ page, onNavigate }: Props) {
                   setOpen(false)
                 }}
               >
-                <span>Платформа</span>
+                <span>{t.nav.platform}</span>
                 <span>→</span>
               </button>
               <button
@@ -107,7 +132,7 @@ export function NavBar({ page, onNavigate }: Props) {
                   setOpen(false)
                 }}
               >
-                <span>Кейсы</span>
+                <span>{t.nav.cases}</span>
                 <span>→</span>
               </button>
               <button
@@ -117,14 +142,17 @@ export function NavBar({ page, onNavigate }: Props) {
                   setOpen(false)
                 }}
               >
-                <span>Написать нам</span>
+                <span>{t.nav.contact}</span>
                 <span>→</span>
               </button>
             </div>
 
-            <a className="nav-phone" href="tel:+77018771414">
-              +7 701 877 14 14
-            </a>
+            <div className="nav-mobile-meta">
+              {renderLanguageSwitch()}
+              <a className="nav-phone" href="tel:+77018771414">
+                +7 701 877 14 14
+              </a>
+            </div>
           </div>
         </div>
       )}

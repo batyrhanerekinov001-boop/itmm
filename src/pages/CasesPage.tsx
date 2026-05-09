@@ -1,5 +1,5 @@
 import { Footer } from "../components/Footer"
-import { CASE_HEADERS, CASE_METRICS, CASE_TABS } from "../data/cases"
+import { useLanguage } from "../hooks/useLanguage"
 import type { CaseId } from "../types"
 import { ConstructionCase } from "./cases/ConstructionCase"
 import { EnergyCase } from "./cases/EnergyCase"
@@ -13,21 +13,22 @@ type Props = {
 }
 
 export function CasesPage({ activeCase, onSelectCase, onNavigateToContact }: Props) {
-  const header = CASE_HEADERS[activeCase]
-  const metrics = CASE_METRICS[activeCase]
+  const { t } = useLanguage()
+  const header = t.cases.headers[activeCase]
+  const metrics = t.cases.metrics[activeCase]
 
   return (
     <>
       <div className="case-page-hero">
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div className="case-tabs">
-            {CASE_TABS.map((t) => (
+            {t.cases.tabs.map((tab) => (
               <button
-                key={t.id}
-                className={`case-tab${t.id === activeCase ? " active" : ""}`}
-                onClick={() => onSelectCase(t.id)}
+                key={tab.id}
+                className={`case-tab${tab.id === activeCase ? " active" : ""}`}
+                onClick={() => onSelectCase(tab.id)}
               >
-                {t.label}
+                {tab.label}
               </button>
             ))}
           </div>
@@ -54,10 +55,10 @@ export function CasesPage({ activeCase, onSelectCase, onNavigateToContact }: Pro
       </div>
 
       <div className="dark-cta">
-        <h2>Похожая задача?</h2>
-        <p>Обсудим ваш проект и предложим подходящее решение.</p>
+        <h2>{t.cases.cta.title}</h2>
+        <p>{t.cases.cta.text}</p>
         <button className="btn-white" onClick={onNavigateToContact}>
-          Написать нам →
+          {t.cases.cta.button}
         </button>
       </div>
 

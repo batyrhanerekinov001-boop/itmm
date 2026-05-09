@@ -1,24 +1,26 @@
+import { useLanguage } from "../../hooks/useLanguage"
+
 export function EnergyCase() {
+  const { t } = useLanguage()
+  const data = t.cases.details.energy
+
   return (
     <>
       <div className="case-two-col">
         <div>
-          <div className="col-head">Основной функционал</div>
+          <div className="col-head">{data.leftTitle}</div>
           <ul className="ul-clean">
-            <li>Управление базой абонентов и договорами</li>
-            <li>Автоматизация документооборота с бухгалтерией</li>
-            <li>Детализированные отчёты по объектам</li>
-            <li>Подключение к телеметрии и приборам учёта</li>
-            <li>Контроль инцидентов и уведомления</li>
+            {data.leftItems.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
           </ul>
         </div>
         <div>
-          <div className="col-head">Результаты</div>
+          <div className="col-head">{data.rightTitle}</div>
           <ul className="ul-clean">
-            <li>Полная прозрачность по потреблению и расчётам</li>
-            <li>Сокращение времени обработки документов</li>
-            <li>Централизованный контроль станций и сетей</li>
-            <li>Улучшение прогнозирования нагрузок</li>
+            {data.rightItems.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
           </ul>
         </div>
       </div>
@@ -31,14 +33,14 @@ export function EnergyCase() {
           marginBottom: 24,
         }}
       >
-        ERP стала основой цифровой трансформации. Решение масштабируемо и готово к
-        интеграции с ИИ-модулями для прогнозирования энергопотребления.
+        {data.tailText}
       </p>
       <div className="tech-chips">
-        <div className="tech-chip">📟 Телеметрия</div>
-        <div className="tech-chip">🏭 ERP</div>
-        <div className="tech-chip">📊 Аналитика</div>
-        <div className="tech-chip">🤖 ИИ-ready</div>
+        {data.chips.map((chip) => (
+          <div className="tech-chip" key={chip}>
+            {chip}
+          </div>
+        ))}
       </div>
     </>
   )
