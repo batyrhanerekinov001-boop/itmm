@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ITMM — Умнее. Быстрее. Эффективнее.</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+:root {
+  --blue: #3a6df0;
+  --blue-dark: #1d3fb0;
+  --blue-light: #eef2ff;
+  --text: #1a1a2e;
+  --sub: #5a6480;
+  --border: #e5e8f0;
+  --bg: #ffffff;
+  --bg2: #f7f9fc;
+  --radius: 14px;
+  --font: 'Inter', sans-serif;
+}
+body { font-family: var(--font); color: var(--text); background: var(--bg); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+
+.announce-bar { background: var(--blue); color: #fff; text-align: center; padding: 9px 20px; font-size: 13px; font-weight: 500; }
+.announce-bar a { color: #fff; text-decoration: underline; cursor: pointer; }
+
+nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 60px; height: 64px; }
+.nav-logo { font-size: 22px; font-weight: 900; color: var(--text); letter-spacing: -0.5px; cursor: pointer; }
+.nav-logo span { color: var(--blue); }
+.nav-links { display: flex; gap: 4px; list-style: none; }
+.nav-links button { background: none; border: none; color: var(--sub); font-family: var(--font); font-size: 14px; font-weight: 500; padding: 7px 14px; border-radius: 8px; cursor: pointer; transition: color .15s, background .15s; }
+.nav-links button:hover, .nav-links button.active { color: var(--text); background: var(--bg2); }
+.nav-cta { background: var(--blue) !important; color: #fff !important; border-radius: 8px !important; font-weight: 600 !important; padding: 8px 18px !important; }
+.nav-cta:hover { background: var(--blue-dark) !important; }
+
+.page { display: none; }
+.page.active { display: block; }
+
+/* HERO */
+.hero { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; padding: 90px 60px 80px; max-width: 1200px; margin: 0 auto; }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: var(--blue-light); color: var(--blue); font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 12px; border-radius: 100px; margin-bottom: 24px; }
+.hero h1 { font-size: clamp(40px, 5vw, 62px); font-weight: 900; line-height: 1.05; letter-spacing: -2px; color: var(--text); margin-bottom: 22px; }
+.hero h1 em { font-style: normal; color: var(--blue); }
+.hero-sub { font-size: 18px; color: var(--sub); line-height: 1.7; margin-bottom: 36px; max-width: 480px; }
+.hero-actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+
+.btn-primary { background: var(--blue); color: #fff; border: none; border-radius: 10px; padding: 13px 28px; font-size: 15px; font-weight: 600; font-family: var(--font); cursor: pointer; transition: background .15s, transform .15s; }
+.btn-primary:hover { background: var(--blue-dark); transform: translateY(-1px); }
+.btn-outline { background: transparent; color: var(--blue); border: 1.5px solid var(--blue); border-radius: 10px; padding: 12px 24px; font-size: 15px; font-weight: 600; font-family: var(--font); cursor: pointer; transition: background .15s; }
+.btn-outline:hover { background: var(--blue-light); }
+.btn-link { background: none; border: none; color: var(--blue); font-size: 14px; font-weight: 600; font-family: var(--font); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+.btn-link:hover { text-decoration: underline; }
+
+.hero-visual { position: relative; display: flex; align-items: center; justify-content: center; }
+.hero-blob { width: 420px; height: 420px; background: radial-gradient(ellipse at 30% 40%, #a8c4ff 0%, #c5b4f7 35%, #f4c4e0 65%, #fde9c0 100%); border-radius: 50%; opacity: 0.7; position: relative; }
+.hero-card-float { position: absolute; background: #fff; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); padding: 14px 18px; font-size: 13px; font-weight: 600; color: var(--text); display: flex; align-items: center; gap: 10px; animation: float 4s ease-in-out infinite; white-space: nowrap; }
+.hero-card-float.c1 { top: 30px; left: -20px; animation-delay: 0s; }
+.hero-card-float.c2 { bottom: 60px; right: -10px; animation-delay: 1.5s; }
+.hero-card-float.c3 { top: 50%; left: -30px; animation: float3 4s ease-in-out infinite; animation-delay: 0.8s; }
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+@keyframes float3 { 0%,100%{transform:translateY(-50%)} 50%{transform:translateY(calc(-50% - 10px))} }
+.card-icon { width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
+.card-icon.blue { background: var(--blue-light); }
+.card-icon.green { background: #e6f9f0; }
+.card-icon.orange { background: #fff4e5; }
+
+/* LOGOS */
+.logos-section { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 36px 60px; background: var(--bg2); }
+.logos-label { text-align: center; font-size: 12px; color: var(--sub); font-weight: 600; letter-spacing: 0.5px; margin-bottom: 28px; text-transform: uppercase; }
+.logos-row { display: flex; align-items: center; justify-content: center; gap: 60px; flex-wrap: wrap; }
+.logo-item { font-size: 17px; font-weight: 800; color: #b0b8cc; letter-spacing: -0.5px; }
+
+/* SECTION */
+.section-wrap { max-width: 1200px; margin: 0 auto; padding: 80px 60px; }
+.section-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--blue); margin-bottom: 14px; }
+.section-title { font-size: clamp(32px, 3.5vw, 48px); font-weight: 900; letter-spacing: -1.5px; line-height: 1.08; color: var(--text); margin-bottom: 18px; }
+.section-sub { font-size: 17px; color: var(--sub); max-width: 560px; line-height: 1.7; margin-bottom: 56px; }
+
+/* BLOG CARDS */
+.blog-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 20px; margin-top: 40px; }
+.blog-card { border-radius: var(--radius); border: 1.5px solid var(--border); overflow: hidden; cursor: pointer; transition: box-shadow .2s; }
+.blog-card:hover { box-shadow: 0 6px 28px rgba(0,0,0,0.1); }
+.blog-card-img { height: 180px; display: flex; align-items: center; justify-content: center; font-size: 48px; position: relative; overflow: hidden; }
+.blog-card-img.g1 { background: linear-gradient(135deg,#667eea,#9f7aea,#ed64a6); }
+.blog-card-img.g2 { background: linear-gradient(135deg,#0f0c29,#302b63,#24243e); }
+.blog-card-img.g3 { background: linear-gradient(135deg,#1a1a2e,#16213e,#0f3460); }
+.blog-card-img .big-num { font-size: 80px; font-weight: 900; opacity: 0.25; color: #fff; position: absolute; right: 10px; bottom: -10px; line-height: 1; }
+.blog-card-body { padding: 20px 24px 24px; }
+.blog-card-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--sub); margin-bottom: 10px; }
+.blog-card h3 { font-size: 16px; font-weight: 700; line-height: 1.4; letter-spacing: -0.2px; }
+.blog-card p { font-size: 13px; color: var(--sub); margin-top: 8px; line-height: 1.5; }
+
+/* FEATURE GRID */
+.grid3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+.feature-card { padding: 32px; border-radius: var(--radius); border: 1.5px solid var(--border); background: #fff; transition: border-color .2s, box-shadow .2s; }
+.feature-card:hover { border-color: var(--blue); box-shadow: 0 4px 24px rgba(58,109,240,0.08); }
+.f-icon { width: 48px; height: 48px; border-radius: 12px; background: var(--blue-light); display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 20px; }
+.feature-card h3 { font-size: 18px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 10px; }
+.feature-card p { font-size: 14px; color: var(--sub); line-height: 1.65; }
+
+/* CENTER SECTION */
+.center-section { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); text-align: center; padding: 80px 60px; }
+
+/* SPLIT */
+.split-section { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; padding: 80px 60px; max-width: 1200px; margin: 0 auto; }
+.split-section.reverse { direction: rtl; }
+.split-section.reverse > * { direction: ltr; }
+.split-visual { border-radius: 20px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.12); height: 360px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 14px; }
+.sv-blue { background: linear-gradient(135deg,#3a6df0,#1d3fb0); }
+.sv-orange { background: linear-gradient(135deg,#ea580c,#dc2626); }
+.mock-window { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 16px 20px; color: rgba(255,255,255,0.9); font-size: 13px; width: 80%; }
+.mock-bar { display: flex; gap: 6px; margin-bottom: 12px; }
+.mock-dot { width: 8px; height: 8px; border-radius: 50%; }
+.mock-dot.r{background:#ff5f57}.mock-dot.y{background:#febc2e}.mock-dot.g{background:#28c840}
+.mock-row { height: 8px; background: rgba(255,255,255,0.15); border-radius: 4px; margin-bottom: 8px; }
+.mock-stat { display: flex; gap: 8px; margin-top: 12px; }
+.mock-badge { background: rgba(255,255,255,0.15); border-radius: 6px; padding: 6px 10px; font-size: 16px; font-weight: 800; color: #fff; }
+.split-content .section-title { margin-bottom: 16px; }
+.split-content p { font-size: 16px; color: var(--sub); line-height: 1.75; margin-bottom: 24px; }
+.results-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.chip { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 8px 14px; font-size: 13px; font-weight: 600; color: var(--text); display: flex; align-items: center; gap: 6px; }
+.chip .cv { color: var(--blue); }
+
+/* SECTORS */
+.sectors-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+.sector-card { background: var(--bg2); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 28px 24px; cursor: pointer; transition: all .2s; }
+.sector-card:hover { background: #fff; border-color: var(--blue); box-shadow: 0 4px 20px rgba(58,109,240,0.1); }
+.s-icon { font-size: 28px; margin-bottom: 14px; }
+.sector-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+.sector-card p { font-size: 13px; color: var(--sub); line-height: 1.55; }
+
+/* DARK CTA */
+.dark-cta { background: var(--text); color: #fff; padding: 80px 60px; text-align: center; }
+.dark-cta h2 { font-size: clamp(32px,4vw,52px); font-weight: 900; letter-spacing: -1.5px; margin-bottom: 18px; }
+.dark-cta p { color: rgba(255,255,255,0.6); font-size: 17px; margin-bottom: 40px; }
+.btn-white { background: #fff; color: var(--text); border: none; border-radius: 10px; padding: 14px 32px; font-size: 15px; font-weight: 700; font-family: var(--font); cursor: pointer; transition: opacity .15s; }
+.btn-white:hover { opacity: 0.9; }
+
+/* CASES */
+.case-page-hero { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 80px 60px 60px; }
+.case-tabs { display: flex; gap: 8px; margin-bottom: 48px; flex-wrap: wrap; }
+.case-tab { background: #fff; border: 1.5px solid var(--border); border-radius: 10px; padding: 9px 18px; font-family: var(--font); font-size: 13px; font-weight: 600; color: var(--sub); cursor: pointer; transition: all .15s; }
+.case-tab.active, .case-tab:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
+.case-tag { display: inline-block; background: var(--blue-light); color: var(--blue); font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 4px 12px; border-radius: 6px; margin-bottom: 20px; }
+.case-page-hero h1 { font-size: clamp(34px,4.5vw,56px); font-weight: 900; letter-spacing: -1.5px; line-height: 1.05; margin-bottom: 20px; max-width: 760px; }
+.case-page-hero p { font-size: 17px; color: var(--sub); max-width: 600px; line-height: 1.7; }
+
+.metrics-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 56px 60px; }
+.metric-box { background: #fff; padding: 32px 28px; text-align: center; }
+.metric-val { font-size: 40px; font-weight: 900; color: var(--blue); letter-spacing: -1.5px; line-height: 1; margin-bottom: 8px; }
+.metric-label { font-size: 13px; color: var(--sub); font-weight: 500; }
+
+.case-body { max-width: 1200px; margin: 0 auto; padding: 0 60px 80px; }
+.case-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+.col-head { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--blue); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+.col-head::after { content:''; flex:1; height:1px; background:var(--border); }
+.ul-clean { list-style: none; }
+.ul-clean li { padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 15px; color: var(--sub); display: flex; gap: 12px; align-items: flex-start; }
+.ul-clean li::before { content:'→'; color:var(--blue); flex-shrink:0; font-weight:700; margin-top:1px; }
+.ul-clean li:last-child { border-bottom: none; }
+.tech-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; }
+.tech-chip { background: var(--blue-light); color: var(--blue); border-radius: 8px; padding: 7px 14px; font-size: 13px; font-weight: 600; }
+
+/* CONTACT */
+.contact-page { min-height: calc(100vh - 65px); display: grid; grid-template-columns: 1fr 1fr; }
+.contact-left { background: var(--text); padding: 80px 60px; display: flex; flex-direction: column; justify-content: center; }
+.contact-left h1 { font-size: clamp(36px,4vw,56px); font-weight: 900; letter-spacing: -2px; color: #fff; line-height: 1.05; margin-bottom: 20px; }
+.contact-left h1 span { color: var(--blue); }
+.contact-left p { color: rgba(255,255,255,0.55); font-size: 16px; line-height: 1.7; margin-bottom: 48px; }
+.phone-link { font-size: 28px; font-weight: 900; color: #fff; text-decoration: none; letter-spacing: -0.5px; display: block; margin-bottom: 36px; transition: color .15s; }
+.phone-link:hover { color: var(--blue); }
+.social-list { display: flex; flex-direction: column; gap: 12px; }
+.social-item { display: flex; align-items: center; gap: 14px; padding: 14px 18px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: #fff; text-decoration: none; font-size: 14px; font-weight: 600; transition: background .15s, border-color .15s; }
+.social-item:hover { background: rgba(58,109,240,0.2); border-color: var(--blue); }
+.social-icon { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.si-ig{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)}
+.si-wa{background:#25d366}.si-tg{background:#0088cc}.si-li{background:#0077b5}
+.contact-right { background: var(--bg2); padding: 80px 60px; display: flex; flex-direction: column; justify-content: center; }
+.contact-right h2 { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 32px; }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--sub); margin-bottom: 8px; }
+.form-group input, .form-group textarea, .form-group select { width: 100%; background: #fff; border: 1.5px solid var(--border); border-radius: 10px; padding: 12px 16px; font-size: 14px; font-family: var(--font); color: var(--text); transition: border-color .15s; outline: none; }
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--blue); }
+.form-group textarea { resize: vertical; min-height: 100px; }
+.form-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+footer { background: var(--text); color: rgba(255,255,255,0.5); padding: 32px 60px; display: flex; align-items: center; justify-content: space-between; font-size: 13px; }
+.footer-logo { font-size: 18px; font-weight: 900; color: #fff; }
+.footer-logo span { color: var(--blue); }
+
+@media(max-width:900px){
+  nav{padding:0 20px}
+  .hero{grid-template-columns:1fr;padding:80px 20px 60px}
+  .hero-visual{display:none}
+  .logos-section{padding:30px 20px}
+  .logos-row{gap:24px}
+  .section-wrap{padding:60px 20px}
+  .grid3{grid-template-columns:1fr}
+  .blog-grid{grid-template-columns:1fr}
+  .split-section{grid-template-columns:1fr;padding:60px 20px;gap:40px}
+  .split-section.reverse{direction:ltr}
+  .sectors-grid{grid-template-columns:repeat(2,1fr)}
+  .metrics-row{grid-template-columns:repeat(2,1fr);margin:40px 20px}
+  .case-page-hero{padding:60px 20px 40px}
+  .case-body{padding:0 20px 60px}
+  .case-two-col{grid-template-columns:1fr;gap:40px}
+  .contact-page{grid-template-columns:1fr}
+  .contact-left{padding:60px 20px}
+  .contact-right{padding:40px 20px}
+  footer{padding:24px 20px;flex-direction:column;gap:10px;text-align:center}
+  .center-section{padding:60px 20px}
+  .dark-cta{padding:60px 20px}
+}
+</style>
+</head>
+<body>
+
+<div class="announce-bar">🇰🇿 Казахстан создаёт Министерство ИИ — <a onclick="showPage('home')">Узнайте, как это влияет на ваш бизнес →</a></div>
+
+<nav>
+  <div class="nav-logo" onclick="showPage('home')">IT<span>MM</span></div>
+  <ul class="nav-links">
+    <li><button onclick="showPage('home')" id="nav-home" class="active">Платформа</button></li>
+    <li><button onclick="showPage('cases')" id="nav-cases">Кейсы</button></li>
+    <li><button onclick="showPage('contact')" id="nav-contact" class="nav-cta">Написать нам</button></li>
+  </ul>
+</nav>
+
+<!-- HOME -->
+<div class="page active" id="page-home">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="hero">
+      <div class="hero-content">
+        <div class="hero-eyebrow">🇰🇿 Казахстанская IT-компания</div>
+        <h1>Новый способ<br>строить<br><em>умный бизнес.</em></h1>
+        <p class="hero-sub">ITMM внедряет ИИ и цифровые решения, чтобы средний и крупный бизнес выигрывал конкуренцию и рос быстрее.</p>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="showPage('cases')">Смотреть кейсы</button>
+          <button class="btn-outline" onclick="showPage('contact')">Обсудить проект</button>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-blob"></div>
+        <div class="hero-card-float c1">
+          <div class="card-icon blue">🏗️</div>
+          <div><div style="font-size:11px;color:#888;font-weight:500">Строительство</div><div>145М₽ экономии/год</div></div>
+        </div>
+        <div class="hero-card-float c2">
+          <div class="card-icon green">⚡</div>
+          <div><div style="font-size:11px;color:#888;font-weight:500">Teboil · Нефтегаз</div><div>Автоматизация 80%</div></div>
+        </div>
+        <div class="hero-card-float c3">
+          <div class="card-icon orange">🎮</div>
+          <div><div style="font-size:11px;color:#888;font-weight:500">Ритейл · Геймификация</div><div>7 игр за 1 год</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="logos-section">
+    <div class="logos-label">Реализовано для ведущих компаний</div>
+    <div class="logos-row">
+      <div class="logo-item">TEBOIL</div>
+      <div class="logo-item">TOP‑5 DEV</div>
+      <div class="logo-item">ENERGY CO</div>
+      <div class="logo-item">RETAIL CHAIN</div>
+      <div class="logo-item">OIL & GAS</div>
+    </div>
+  </div>
+
+  <div class="section-wrap">
+    <div class="section-eyebrow">Топ кейсы</div>
+    <div class="section-title">Строить крутые продукты<br>не должно быть сложно.</div>
+    <div class="blog-grid">
+      <div class="blog-card" onclick="showCase('construction')">
+        <div class="blog-card-img g1"><span>🏗️</span><div class="big-num">ЛКП</div></div>
+        <div class="blog-card-body">
+          <div class="blog-card-label">Строительство</div>
+          <h3>Личный кабинет подрядчика — цифровой документооборот для топ-5 девелопера России</h3>
+          <p>Ускорение согласования в 4× и экономия 145М₽ в год.</p>
+        </div>
+      </div>
+      <div class="blog-card" onclick="showCase('oil')">
+        <div class="blog-card-img g2" style="height:140px"><div class="big-num" style="font-size:56px">🛢️</div></div>
+        <div class="blog-card-body">
+          <div class="blog-card-label">Нефтегаз · Teboil</div>
+          <h3>Система учёта нефтепродуктов — соответствие нормам ЕС</h3>
+        </div>
+      </div>
+      <div class="blog-card" onclick="showCase('retail')">
+        <div class="blog-card-img g3" style="height:140px"><div class="big-num" style="font-size:56px">🎮</div></div>
+        <div class="blog-card-body">
+          <div class="blog-card-label">Ритейл</div>
+          <h3>Игровая экосистема — геймификация для сети супермаркетов</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="center-section">
+    <div style="max-width:1200px;margin:0 auto">
+      <div class="section-eyebrow">Наш подход</div>
+      <div class="section-title" style="margin:0 auto 16px;text-align:center">Строить цифровой бизнес<br>не должно быть сложно.</div>
+      <p class="section-sub" style="margin:0 auto 56px;text-align:center">Наше видение — помочь бизнесу решить потребность в цифровизации быстро и с гарантированным результатом.</p>
+      <div class="grid3">
+        <div class="feature-card">
+          <div class="f-icon">🥽</div>
+          <h3>Лучше. Быстрее.</h3>
+          <p>VR и AR для производства и обучения — ускоряем подготовку персонала и внедрение новых технологий на реальных объектах.</p>
+        </div>
+        <div class="feature-card">
+          <div class="f-icon">⚡</div>
+          <h3>Готово к будущему</h3>
+          <p>Гибкие, надёжные решения на открытых стандартах. ИИ встраивается в любые процессы — от добычи до офисных задач.</p>
+        </div>
+        <div class="feature-card">
+          <div class="f-icon">🔐</div>
+          <h3>Непрерывная защита</h3>
+          <p>AI-кибербезопасность: защита информации, предотвращение кибератак и обеспечение безопасности в цифровую эпоху.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="split-section">
+      <div class="split-content">
+        <div class="section-eyebrow">Строительство · Кросс-платформенно</div>
+        <div class="section-title">Современная платформа управления подрядчиками.</div>
+        <p>Единственная платформа, созданная специально для крупного девелопера. Полная замена бумажного документооборота, интеграция с 1С.</p>
+        <div class="results-chips">
+          <div class="chip"><span class="cv">4×</span> ускорение</div>
+          <div class="chip"><span class="cv">1000+</span> актов/мес</div>
+          <div class="chip"><span class="cv">145М₽</span> экономия</div>
+        </div>
+        <div style="margin-top:24px"><button class="btn-link" onclick="showCase('construction')">Читать кейс →</button></div>
+      </div>
+      <div class="split-visual sv-blue">
+        <div class="mock-window">
+          <div class="mock-bar"><div class="mock-dot r"></div><div class="mock-dot y"></div><div class="mock-dot g"></div></div>
+          <div style="color:rgba(255,255,255,0.5);font-size:11px;margin-bottom:10px">Личный кабинет подрядчика</div>
+          <div class="mock-row" style="width:80%"></div>
+          <div class="mock-row" style="width:60%"></div>
+          <div class="mock-row" style="width:40%"></div>
+          <div class="mock-stat">
+            <div class="mock-badge">7 дн</div>
+            <div class="mock-badge">1000+</div>
+            <div class="mock-badge">200</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+    <div style="max-width:1200px;margin:0 auto">
+      <div class="split-section reverse">
+        <div class="split-content">
+          <div class="section-eyebrow">Нефтегаз · Teboil</div>
+          <div class="section-title">Учитывайте разницу между ручным и цифровым учётом.</div>
+          <p>Узнайте, как избавиться от ручного ввода данных, обеспечить соответствие нормам ЕС и повысить прозрачность операций на всех терминалах.</p>
+          <button class="btn-link" onclick="showCase('oil')">Читать кейс →</button>
+        </div>
+        <div class="split-visual sv-orange">
+          <div style="font-size:52px">🛢️</div>
+          <div style="color:rgba(255,255,255,0.9);font-weight:700;font-size:16px">Teboil · Учёт нефтепродуктов</div>
+          <div style="color:rgba(255,255,255,0.5);font-size:13px">Нормы ЕС · Real-time мониторинг</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-wrap">
+    <div class="section-eyebrow">Отраслевая экспертиза</div>
+    <div class="section-title">Управляйте и масштабируйтесь<br>в любом секторе.</div>
+    <p class="section-sub">Уделяйте время тому, что важно. Запускайтесь быстро и масштабируйтесь под любые задачи бизнеса.</p>
+    <div class="sectors-grid">
+      <div class="sector-card" onclick="showCase('construction')"><div class="s-icon">🏗️</div><h3>Строительство</h3><p>ЛКП, учёт договоров, отслеживание платежей по объектам.</p></div>
+      <div class="sector-card" onclick="showCase('oil')"><div class="s-icon">🛢️</div><h3>Нефтегаз</h3><p>Учёт нефтепродуктов, биокомпоненты, соответствие нормам ЕС.</p></div>
+      <div class="sector-card" onclick="showCase('retail')"><div class="s-icon">🛒</div><h3>Ритейл</h3><p>Игровые механики, программы лояльности, аналитика покупок.</p></div>
+      <div class="sector-card" onclick="showCase('energy')"><div class="s-icon">⚡</div><h3>Энергетика</h3><p>ERP, учёт абонентов, телеметрия, мониторинг инфраструктуры.</p></div>
+    </div>
+    <div style="margin-top:40px;display:flex;gap:16px">
+      <button class="btn-primary" onclick="showPage('cases')">Все кейсы</button>
+      <button class="btn-link" onclick="showPage('contact')">Обсудить проект →</button>
+    </div>
+  </div>
+
+  <div class="dark-cta">
+    <h2>Познакомимся?</h2>
+    <p>Расскажите о вашем бизнесе — и мы вместе придумаем, как сделать его круче.</p>
+    <button class="btn-white" onclick="showPage('contact')">Написать нам →</button>
+  </div>
+
+  <footer>
+    <div class="footer-logo">IT<span>MM</span></div>
+    <div>+7 701 877 1414 · itmm.kz</div>
+    <div>© 2025 ITMM. Все права защищены.</div>
+  </footer>
+</div>
+
+<!-- CASES -->
+<div class="page" id="page-cases">
+  <div class="case-page-hero">
+    <div style="max-width:1200px;margin:0 auto">
+      <div class="case-tabs">
+        <button class="case-tab active" onclick="showCase('construction')" id="tab-construction">🏗️ Строительство</button>
+        <button class="case-tab" onclick="showCase('retail')" id="tab-retail">🛒 Ритейл</button>
+        <button class="case-tab" onclick="showCase('oil')" id="tab-oil">🛢️ Нефтегаз</button>
+        <button class="case-tab" onclick="showCase('energy')" id="tab-energy">⚡ Энергетика</button>
+      </div>
+      <div id="ch-construction"><div class="case-tag">Строительство</div><h1>Личный кабинет подрядчика для строительной компании</h1><p>Веб-платформа для взаимодействия генподрядчика (топ-5 девелоперов России) с сотнями субподрядчиков. Полная замена бумажного документооборота, интеграция с 1С.</p></div>
+      <div id="ch-retail" style="display:none"><div class="case-tag">Ритейл</div><h1>Игровая экосистема для сети супермаркетов</h1><p>Серия из 7 мобильных игр в программе лояльности крупной федеральной сети. Геймификация вовлекла покупателей и увеличила частоту покупок.</p></div>
+      <div id="ch-oil" style="display:none"><div class="case-tag">Нефтегаз</div><h1>Система учёта нефтепродуктов для Teboil</h1><p>Специализированная система для международной нефтяной компании. Автоматизирует контроль состава топлива, обеспечивает соответствие стандартам ЕС.</p></div>
+      <div id="ch-energy" style="display:none"><div class="case-tag">Энергетика</div><h1>ERP-система для энергетической компании</h1><p>Многоуровневая ERP, объединившая коммерческий и технический контуры — от учёта абонентов до мониторинга оборудования в реальном времени.</p></div>
+    </div>
+  </div>
+
+  <div id="m-construction" class="metrics-row"><div class="metric-box"><div class="metric-val">4×</div><div class="metric-label">ускорение согласований</div></div><div class="metric-box"><div class="metric-val">2×</div><div class="metric-label">быстрее выплаты</div></div><div class="metric-box"><div class="metric-val">1000+</div><div class="metric-label">актов в месяц онлайн</div></div><div class="metric-box"><div class="metric-val">145М₽</div><div class="metric-label">экономия в год</div></div></div>
+  <div id="m-retail" class="metrics-row" style="display:none"><div class="metric-box"><div class="metric-val">7</div><div class="metric-label">игр за первый год</div></div><div class="metric-box"><div class="metric-val">↑↑</div><div class="metric-label">вовлечённость</div></div><div class="metric-box"><div class="metric-val">↑</div><div class="metric-label">средний чек</div></div><div class="metric-box"><div class="metric-val">∞</div><div class="metric-label">постоянный инструмент</div></div></div>
+  <div id="m-oil" class="metrics-row" style="display:none"><div class="metric-box"><div class="metric-val">−30%</div><div class="metric-label">время обработки</div></div><div class="metric-box"><div class="metric-val">+20%</div><div class="metric-label">точность учёта</div></div><div class="metric-box"><div class="metric-val">80%</div><div class="metric-label">автоматизация</div></div><div class="metric-box"><div class="metric-val">100%</div><div class="metric-label">соответствие ЕС</div></div></div>
+  <div id="m-energy" class="metrics-row" style="display:none"><div class="metric-box"><div class="metric-val">100%</div><div class="metric-label">прозрачность данных</div></div><div class="metric-box"><div class="metric-val">↓↓</div><div class="metric-label">время отчётов</div></div><div class="metric-box"><div class="metric-val">↑</div><div class="metric-label">эффективность</div></div><div class="metric-box"><div class="metric-val">AI</div><div class="metric-label">готовность к ИИ</div></div></div>
+
+  <div class="case-body">
+    <div id="cb-construction">
+      <div class="case-two-col">
+        <div><div class="col-head">Задача</div><p style="color:var(--sub);font-size:15px;line-height:1.7;margin-bottom:20px">Коммуникации по телефону и почте — менеджеры перегружены, сроки затягивались, согласования терялись.</p><ul class="ul-clean"><li>Централизовать взаимодействие с подрядчиками</li><li>Исключить потери информации и дублирование</li><li>Ускорить согласование документов и оплат</li><li>Снизить нагрузку на сотрудников</li></ul></div>
+        <div><div class="col-head">Ключевые возможности</div><ul class="ul-clean"><li>Полная синхронизация с 1С: единые данные и отчёты</li><li>Цифровое согласование документов и доп. работ</li><li>Чат и тикет-система для коммуникации</li><li>Автоматическое отслеживание статусов договоров</li><li>Корректировка смет прямо в интерфейсе ЛКП</li></ul></div>
+      </div>
+      <div class="col-head">Результаты</div>
+      <ul class="ul-clean"><li>Согласование сокращено с 30 до 7 дней</li><li>200 подрядчиков и 1000 договоров без увеличения штата</li><li>Ускорение строительных процессов за счёт устранения задержек</li><li>Система работает более 3 лет и продолжает развиваться</li><li>Экономический эффект: 145–152 млн ₽ в год</li></ul>
+      <div class="tech-chips"><div class="tech-chip">💡 1C интеграция</div><div class="tech-chip">📄 Цифровой документооборот</div><div class="tech-chip">💬 Тикет-система</div><div class="tech-chip">📊 Аналитика</div></div>
+    </div>
+    <div id="cb-retail" style="display:none">
+      <div class="case-two-col">
+        <div><div class="col-head">Задача</div><p style="color:var(--sub);font-size:15px;line-height:1.7;margin-bottom:20px">Создать интерактивный инструмент для повышения лояльности через геймификацию покупок.</p><ul class="ul-clean"><li>Вовлечь покупателей в программу лояльности</li><li>Стимулировать повторные покупки</li><li>Выдавать реальные купоны за достижения</li></ul></div>
+        <div><div class="col-head">Решение</div><ul class="ul-clean"><li>7 мобильных игр в единой экосистеме</li><li>Игровая карта с локациями и уровнями</li><li>Интеграция с программой лояльности</li><li>Прямое отслеживание эффективности</li><li>Постоянная аналитика активности</li></ul></div>
+      </div>
+      <div class="col-head">Результаты</div>
+      <ul class="ul-clean"><li>Рост числа активных участников программы лояльности</li><li>Увеличение среднего чека и частоты покупок</li><li>Новый эмоциональный канал взаимодействия с брендом</li><li>Превращение в постоянный инструмент клиентского маркетинга</li></ul>
+      <div class="tech-chips"><div class="tech-chip">🎮 Геймификация</div><div class="tech-chip">📱 Мобильные игры</div><div class="tech-chip">🎁 Программа лояльности</div><div class="tech-chip">📈 Аналитика</div></div>
+    </div>
+    <div id="cb-oil" style="display:none">
+      <div class="case-two-col">
+        <div><div class="col-head">Задача</div><ul class="ul-clean"><li>Централизовать учёт нефтепродуктов на всех терминалах</li><li>Контролировать биокомпоненты для норм ЕС</li><li>Сократить ручной ввод и ошибки</li><li>Повысить прозрачность производственного учёта</li></ul></div>
+        <div><div class="col-head">Функциональные возможности</div><ul class="ul-clean"><li>Учёт состава нефтепродуктов в реальном времени</li><li>Справочники: нефтепродукты, танки, терминалы</li><li>Автоматический расчёт биокомпонентов</li><li>Импорт/экспорт данных из сторонних систем</li><li>Система уведомлений и алертов</li></ul></div>
+      </div>
+      <div class="col-head">Результаты</div>
+      <ul class="ul-clean"><li>Централизованный контроль по всем объектам</li><li>Снижение ручных операций и ошибок учёта</li><li>Полное соответствие требованиям ЕС по биотопливу</li><li>Решение стало ядром цифровой трансформации Teboil</li></ul>
+      <div class="tech-chips"><div class="tech-chip">⚗️ Биокомпоненты</div><div class="tech-chip">🔗 ERP-интеграция</div><div class="tech-chip">📡 Real-time</div><div class="tech-chip">📋 Нормы ЕС</div></div>
+    </div>
+    <div id="cb-energy" style="display:none">
+      <div class="case-two-col">
+        <div><div class="col-head">Основной функционал</div><ul class="ul-clean"><li>Управление базой абонентов и договорами</li><li>Автоматизация документооборота с бухгалтерией</li><li>Детализированные отчёты по объектам</li><li>Подключение к телеметрии и приборам учёта</li><li>Контроль инцидентов и уведомления</li></ul></div>
+        <div><div class="col-head">Результаты</div><ul class="ul-clean"><li>Полная прозрачность по потреблению и расчётам</li><li>Сокращение времени обработки документов</li><li>Централизованный контроль станций и сетей</li><li>Улучшение прогнозирования нагрузок</li></ul></div>
+      </div>
+      <p style="color:var(--sub);font-size:15px;line-height:1.7;margin-bottom:24px">ERP стала основой цифровой трансформации. Решение масштабируемо и готово к интеграции с ИИ-модулями для прогнозирования энергопотребления.</p>
+      <div class="tech-chips"><div class="tech-chip">📟 Телеметрия</div><div class="tech-chip">🏭 ERP</div><div class="tech-chip">📊 Аналитика</div><div class="tech-chip">🤖 ИИ-ready</div></div>
+    </div>
+  </div>
+
+  <div class="dark-cta">
+    <h2>Похожая задача?</h2>
+    <p>Обсудим ваш проект и предложим подходящее решение.</p>
+    <button class="btn-white" onclick="showPage('contact')">Написать нам →</button>
+  </div>
+  <footer><div class="footer-logo">IT<span>MM</span></div><div>+7 701 877 1414 · itmm.kz</div><div>© 2025 ITMM. Все права защищены.</div></footer>
+</div>
+
+<!-- CONTACT -->
+<div class="page" id="page-contact">
+  <div class="contact-page">
+    <div class="contact-left">
+      <div style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:32px">Контакты</div>
+      <h1>Давайте<br><span>познакомимся.</span></h1>
+      <p>Расскажите о вашем бизнесе — и мы вместе придумаем, как сделать его круче. Мы всегда на связи.</p>
+      <a href="tel:+77018771414" class="phone-link">+7 701 877 1414</a>
+      <div class="social-list">
+        <a href="https://www.instagram.com/itmm.kz" target="_blank" class="social-item">
+          <div class="social-icon si-ig"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff" stroke="none"/></svg></div>
+          <div><div style="font-size:11px;opacity:.45;font-weight:500">Instagram</div><div>@itmm.kz</div></div>
+          <div style="margin-left:auto;opacity:.35">→</div>
+        </a>
+        <a href="https://wa.me/77018771414" target="_blank" class="social-item">
+          <div class="social-icon si-wa"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.138.564 4.143 1.547 5.878L.057 23.443a.5.5 0 0 0 .6.6l5.565-1.49A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.943 9.943 0 0 1-5.195-1.458l-.372-.22-3.864 1.035 1.036-3.864-.221-.373A9.944 9.944 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg></div>
+          <div><div style="font-size:11px;opacity:.45;font-weight:500">WhatsApp</div><div>+7 701 877 1414</div></div>
+          <div style="margin-left:auto;opacity:.35">→</div>
+        </a>
+        <a href="https://t.me/itmm_kz" target="_blank" class="social-item">
+          <div class="social-icon si-tg"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.16 13.547l-2.965-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.993.012z"/></svg></div>
+          <div><div style="font-size:11px;opacity:.45;font-weight:500">Telegram</div><div>@itmm_kz</div></div>
+          <div style="margin-left:auto;opacity:.35">→</div>
+        </a>
+        <a href="https://www.linkedin.com/company/itmm-kz" target="_blank" class="social-item">
+          <div class="social-icon si-li"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div>
+          <div><div style="font-size:11px;opacity:.45;font-weight:500">LinkedIn</div><div>ITMM Kazakhstan</div></div>
+          <div style="margin-left:auto;opacity:.35">→</div>
+        </a>
+      </div>
+    </div>
+    <div class="contact-right">
+      <h2>Расскажите о проекте</h2>
+      <div class="form-2col">
+        <div class="form-group"><label>Имя</label><input type="text" placeholder="Ваше имя"></div>
+        <div class="form-group"><label>Компания</label><input type="text" placeholder="Название компании"></div>
+      </div>
+      <div class="form-group"><label>Email</label><input type="email" placeholder="email@company.com"></div>
+      <div class="form-group"><label>Отрасль</label><select><option value="">Выберите отрасль</option><option>Строительство</option><option>Нефтегаз</option><option>Ритейл</option><option>Энергетика</option><option>Другое</option></select></div>
+      <div class="form-group"><label>О задаче</label><textarea placeholder="Расскажите о вашем проекте..."></textarea></div>
+      <button class="btn-primary" style="width:100%" onclick="alert('Спасибо! Мы свяжемся с вами в ближайшее время.')">Отправить заявку →</button>
+      <p style="font-size:12px;color:var(--sub);margin-top:16px;text-align:center">Или напрямую: <a href="tel:+77018771414" style="color:var(--blue);font-weight:600">+7 701 877 1414</a></p>
+    </div>
+  </div>
+  <footer><div class="footer-logo">IT<span>MM</span></div><div>+7 701 877 1414 · itmm.kz</div><div>© 2025 ITMM. Все права защищены.</div></footer>
+</div>
+
+<script>
+const CASES = ['construction','retail','oil','energy'];
+function showPage(p){
+  document.querySelectorAll('.page').forEach(el=>el.classList.remove('active'));
+  document.getElementById('page-'+p).classList.add('active');
+  document.querySelectorAll('.nav-links button').forEach(b=>b.classList.remove('active'));
+  const nb=document.getElementById('nav-'+p);
+  if(nb)nb.classList.add('active');
+  window.scrollTo(0,0);
+}
+function showCase(id){
+  showPage('cases');
+  CASES.forEach(c=>{
+    ['tab','ch','m','cb'].forEach(px=>{
+      const el=document.getElementById(px+'-'+c);
+      if(!el)return;
+      if(px==='tab')el.classList.toggle('active',c===id);
+      else el.style.display=c===id?'':'none';
+    });
+  });
+}
+</script>
+</body>
+</html>
