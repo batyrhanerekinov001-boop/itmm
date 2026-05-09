@@ -1,12 +1,11 @@
-import { useLanguage } from "../hooks/useLanguage"
+import type { Translations } from "../i18n/translations"
 
 type Props = {
+  t: Translations
   onGoHome: () => void
 }
 
-export function AnnounceBar({ onGoHome }: Props) {
-  const { t } = useLanguage()
-
+export function AnnounceBar({ t, onGoHome }: Props) {
   return (
     <div className="announce-bar">
       {t.announce.text}{" "}

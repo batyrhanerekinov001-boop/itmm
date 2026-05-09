@@ -2,7 +2,7 @@ import { Instagram, Linkedin, MessageCircle, Send } from "lucide-react"
 import type { FormEvent } from "react"
 import { useState } from "react"
 import { Footer } from "../components/Footer"
-import { useLanguage } from "../hooks/useLanguage"
+import type { Translations } from "../i18n/translations"
 import type { LeadPayload } from "../types"
 
 const initialForm: LeadPayload = {
@@ -13,8 +13,11 @@ const initialForm: LeadPayload = {
   message: "",
 }
 
-export function ContactPage() {
-  const { t } = useLanguage()
+type Props = {
+  t: Translations
+}
+
+export function ContactPage({ t }: Props) {
   const copy = t.contact
   const formCopy = copy.form
   const [form, setForm] = useState<LeadPayload>(initialForm)
@@ -262,7 +265,7 @@ export function ContactPage() {
         </div>
       </div>
 
-      <Footer />
+      <Footer t={t} />
     </>
   )
 }

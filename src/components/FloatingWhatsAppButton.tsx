@@ -1,9 +1,11 @@
 import { MessageCircle } from "lucide-react"
-import { useLanguage } from "../hooks/useLanguage"
+import type { Translations } from "../i18n/translations"
 
-export function FloatingWhatsAppButton() {
-  const { t } = useLanguage()
+type Props = {
+  t: Translations
+}
 
+export function FloatingWhatsAppButton({ t }: Props) {
   return (
     <a
       href="https://wa.me/77018771414"
@@ -16,4 +18,3 @@ export function FloatingWhatsAppButton() {
     </a>
   )
 }
-

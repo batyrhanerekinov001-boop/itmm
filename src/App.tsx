@@ -2,7 +2,8 @@ import { useState } from "react"
 import { AnnounceBar } from "./components/AnnounceBar"
 import { FloatingWhatsAppButton } from "./components/FloatingWhatsAppButton"
 import { NavBar } from "./components/NavBar"
-import { LanguageProvider } from "./hooks/useLanguage"
+import { useLanguage } from "./hooks/useLanguage"
+import { translations } from "./i18n/translations"
 import { CasesPage } from "./pages/CasesPage"
 import { ContactPage } from "./pages/ContactPage"
 import { HomePage } from "./pages/HomePage"
@@ -15,6 +16,8 @@ function scrollTop() {
 export default function App() {
   const [page, setPage] = useState<PageId>("home")
   const [activeCase, setActiveCase] = useState<CaseId>("construction")
+  const { lang, changeLang } = useLanguage()
+  const t = translations[lang]
 
   function showPage(next: PageId) {
     setPage(next)
@@ -28,25 +31,32 @@ export default function App() {
   }
 
   return (
-    <LanguageProvider>
-      <AnnounceBar onGoHome={() => showPage("home")} />
-      <NavBar page={page} onNavigate={showPage} />
+    <>
+      <AnnounceBar t={t} onGoHome={() => showPage("home")} />
+      <NavBar
+        t={t}
+        lang={lang}
+        changeLang={changeLang}
+        page={page}
+        onNavigate={showPage}
+      />
 
       <div className={page === "home" ? "page active" : "page"}>
-        <HomePage onNavigate={showPage} onShowCase={showCase} />
+        <HomePage t={t} onNavigate={showPage} onShowCase={showCase} />
       </div>
       <div className={page === "cases" ? "page active" : "page"}>
         <CasesPage
+          t={t}
           activeCase={activeCase}
           onSelectCase={setActiveCase}
           onNavigateToContact={() => showPage("contact")}
         />
       </div>
       <div className={page === "contact" ? "page active" : "page"}>
-        <ContactPage />
+        <ContactPage t={t} />
       </div>
 
-      <FloatingWhatsAppButton />
-    </LanguageProvider>
+      <FloatingWhatsAppButton t={t} />
+    </>
   )
 }

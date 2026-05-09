@@ -1,6 +1,7 @@
 import type { CaseId } from "../types"
 
-export type Language = "KZ" | "RU" | "EN"
+export type Lang = "RU" | "KZ" | "EN"
+export type Language = Lang
 
 export type Translations = {
   announce: { text: string; link: string }
@@ -114,7 +115,7 @@ export type Translations = {
   floatingWhatsappLabel: string
 }
 
-export const translations: Record<Language, Translations> = {
+export const translations: Record<Lang, Translations> = {
   RU: {
     announce: {
       text: "🇰🇿 Казахстан создаёт Министерство ИИ —",
@@ -560,6 +561,24 @@ translations.KZ = {
       title: ["Кез келген салада", "басқарыңыз және өсіңіз."],
       subtitle:
         "Маңыздысына уақыт бөліңіз. Жылдам іске қосылып, бизнес міндеттеріне сай кеңейіңіз.",
+      items: [
+        {
+          title: "Құрылыс",
+          text: "Мердігер кабинеті, келісімшарт есебі, объектілер бойынша төлемдерді бақылау.",
+        },
+        {
+          title: "Мұнай-газ",
+          text: "Мұнай өнімдерін есепке алу, биокомпоненттер, ЕО нормаларына сәйкестік.",
+        },
+        {
+          title: "Ритейл",
+          text: "Ойын механикалары, лоялдылық бағдарламалары, сатып алу аналитикасы.",
+        },
+        {
+          title: "Энергетика",
+          text: "ERP, абоненттер есебі, телеметрия, инфрақұрылымды мониторинг.",
+        },
+      ],
       allCases: "Барлық кейстер",
       discuss: "Жобаны талқылау →",
     },
@@ -660,6 +679,32 @@ translations.KZ = {
         subtitle:
           "Абоненттер есебінен бастап жабдық мониторингіне дейінгі коммерциялық және техникалық контурларды біріктірген көпдеңгейлі ERP.",
       },
+    },
+    metrics: {
+      construction: [
+        { value: "4×", label: "келісуді жеделдету" },
+        { value: "2×", label: "төлемдер жылдам" },
+        { value: "1000+", label: "айына акт онлайн" },
+        { value: "145М₽", label: "жылына үнем" },
+      ],
+      retail: [
+        { value: "7", label: "1 жылда ойын" },
+        { value: "↑↑", label: "тартылу" },
+        { value: "↑", label: "орташа чек" },
+        { value: "∞", label: "ұзақ мерзімді арна" },
+      ],
+      oil: [
+        { value: "−30%", label: "өңдеу уақыты" },
+        { value: "+20%", label: "есеп дәлдігі" },
+        { value: "80%", label: "автоматтандыру" },
+        { value: "100%", label: "ЕО сәйкестік" },
+      ],
+      energy: [
+        { value: "100%", label: "деректер ашықтығы" },
+        { value: "↓↓", label: "есеп беру уақыты" },
+        { value: "↑", label: "тиімділік" },
+        { value: "AI", label: "ЖИ дайындығы" },
+      ],
     },
     cta: {
       title: "Ұқсас міндет бар ма?",

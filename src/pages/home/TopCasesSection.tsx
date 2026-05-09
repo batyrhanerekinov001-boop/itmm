@@ -1,12 +1,12 @@
 import type { CaseId } from "../../types"
-import { useLanguage } from "../../hooks/useLanguage"
+import type { Translations } from "../../i18n/translations"
 
 type Props = {
+  t: Translations
   onShowCase: (id: CaseId) => void
 }
 
-export function TopCasesSection({ onShowCase }: Props) {
-  const { t } = useLanguage()
+export function TopCasesSection({ t, onShowCase }: Props) {
   const section = t.home.topCases
 
   return (
@@ -58,4 +58,3 @@ export function TopCasesSection({ onShowCase }: Props) {
     </div>
   )
 }
-

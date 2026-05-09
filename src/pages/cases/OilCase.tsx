@@ -1,7 +1,10 @@
-import { useLanguage } from "../../hooks/useLanguage"
+import type { Translations } from "../../i18n/translations"
 
-export function OilCase() {
-  const { t } = useLanguage()
+type Props = {
+  t: Translations
+}
+
+export function OilCase({ t }: Props) {
   const data = t.cases.details.oil
 
   return (
@@ -41,4 +44,3 @@ export function OilCase() {
     </>
   )
 }
-

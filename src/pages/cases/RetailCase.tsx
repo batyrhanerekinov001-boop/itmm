@@ -1,7 +1,10 @@
-import { useLanguage } from "../../hooks/useLanguage"
+import type { Translations } from "../../i18n/translations"
 
-export function RetailCase() {
-  const { t } = useLanguage()
+type Props = {
+  t: Translations
+}
+
+export function RetailCase({ t }: Props) {
   const data = t.cases.details.retail
 
   return (
@@ -51,4 +54,3 @@ export function RetailCase() {
     </>
   )
 }
-

@@ -1,7 +1,10 @@
-import { useLanguage } from "../../hooks/useLanguage"
+import type { Translations } from "../../i18n/translations"
 
-export function EnergyCase() {
-  const { t } = useLanguage()
+type Props = {
+  t: Translations
+}
+
+export function EnergyCase({ t }: Props) {
   const data = t.cases.details.energy
 
   return (
@@ -45,4 +48,3 @@ export function EnergyCase() {
     </>
   )
 }
-

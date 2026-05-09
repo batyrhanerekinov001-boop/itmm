@@ -1,5 +1,5 @@
 import { Footer } from "../components/Footer"
-import { useLanguage } from "../hooks/useLanguage"
+import type { Translations } from "../i18n/translations"
 import type { CaseId } from "../types"
 import { ConstructionCase } from "./cases/ConstructionCase"
 import { EnergyCase } from "./cases/EnergyCase"
@@ -7,13 +7,13 @@ import { OilCase } from "./cases/OilCase"
 import { RetailCase } from "./cases/RetailCase"
 
 type Props = {
+  t: Translations
   activeCase: CaseId
   onSelectCase: (id: CaseId) => void
   onNavigateToContact: () => void
 }
 
-export function CasesPage({ activeCase, onSelectCase, onNavigateToContact }: Props) {
-  const { t } = useLanguage()
+export function CasesPage({ t, activeCase, onSelectCase, onNavigateToContact }: Props) {
   const header = t.cases.headers[activeCase]
   const metrics = t.cases.metrics[activeCase]
 
@@ -48,10 +48,10 @@ export function CasesPage({ activeCase, onSelectCase, onNavigateToContact }: Pro
       </div>
 
       <div className="case-body">
-        {activeCase === "construction" && <ConstructionCase />}
-        {activeCase === "retail" && <RetailCase />}
-        {activeCase === "oil" && <OilCase />}
-        {activeCase === "energy" && <EnergyCase />}
+        {activeCase === "construction" && <ConstructionCase t={t} />}
+        {activeCase === "retail" && <RetailCase t={t} />}
+        {activeCase === "oil" && <OilCase t={t} />}
+        {activeCase === "energy" && <EnergyCase t={t} />}
       </div>
 
       <div className="dark-cta">
@@ -62,8 +62,7 @@ export function CasesPage({ activeCase, onSelectCase, onNavigateToContact }: Pro
         </button>
       </div>
 
-      <Footer />
+      <Footer t={t} />
     </>
   )
 }
-

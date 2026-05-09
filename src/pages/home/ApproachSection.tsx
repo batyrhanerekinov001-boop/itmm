@@ -1,7 +1,10 @@
-import { useLanguage } from "../../hooks/useLanguage"
+import type { Translations } from "../../i18n/translations"
 
-export function ApproachSection() {
-  const { t } = useLanguage()
+type Props = {
+  t: Translations
+}
+
+export function ApproachSection({ t }: Props) {
   const section = t.home.approach
 
   return (
@@ -43,4 +46,3 @@ export function ApproachSection() {
     </div>
   )
 }
-

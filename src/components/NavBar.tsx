@@ -1,34 +1,31 @@
 import { Menu, X } from "lucide-react"
 import { useState } from "react"
-import { useLanguage } from "../hooks/useLanguage"
-import type { Language } from "../i18n/translations"
+import type { Lang, Translations } from "../i18n/translations"
 import type { PageId } from "../types"
 
 type Props = {
+  t: Translations
+  lang: Lang
+  changeLang: (lang: Lang) => void
   page: PageId
   onNavigate: (page: PageId) => void
 }
 
-export function NavBar({ page, onNavigate }: Props) {
+export function NavBar({ t, lang, changeLang, page, onNavigate }: Props) {
   const [open, setOpen] = useState(false)
-  const { language, setLanguage, t } = useLanguage()
-
-  const languages: Language[] = ["KZ", "RU", "EN"]
 
   function renderLanguageSwitch() {
     return (
-      <div className="lang-switch" aria-label="language switcher">
-        {languages.map((lang, index) => (
-          <span key={lang} className="lang-switch-item">
-            <button
-              type="button"
-              className={`lang-btn${language === lang ? " active" : ""}`}
-              onClick={() => setLanguage(lang)}
-            >
-              {lang}
-            </button>
-            {index < languages.length - 1 && <span className="lang-sep">/</span>}
-          </span>
+      <div className="lang-switcher">
+        {(["KZ", "RU", "EN"] as Lang[]).map((l) => (
+          <button
+            key={l}
+            type="button"
+            className={lang === l ? "lang-btn active" : "lang-btn"}
+            onClick={() => changeLang(l)}
+          >
+            {l}
+          </button>
         ))}
       </div>
     )

@@ -1,8 +1,11 @@
 import { useState } from "react"
-import { useLanguage } from "../../hooks/useLanguage"
+import type { Translations } from "../../i18n/translations"
 
-export function FaqSection() {
-  const { t } = useLanguage()
+type Props = {
+  t: Translations
+}
+
+export function FaqSection({ t }: Props) {
   const items = t.home.faq.items
   const [active, setActive] = useState(items[0]?.id ?? "")
 

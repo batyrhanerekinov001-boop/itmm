@@ -1,12 +1,12 @@
 import type { CaseId } from "../../types"
-import { useLanguage } from "../../hooks/useLanguage"
+import type { Translations } from "../../i18n/translations"
 
 type Props = {
+  t: Translations
   onShowCase: (id: CaseId) => void
 }
 
-export function HighlightSplits({ onShowCase }: Props) {
-  const { t } = useLanguage()
+export function HighlightSplits({ t, onShowCase }: Props) {
   const section = t.home.highlights
 
   return (
@@ -58,7 +58,7 @@ export function HighlightSplits({ onShowCase }: Props) {
               <div className="mock-row" style={{ width: "60%" }}></div>
               <div className="mock-row" style={{ width: "40%" }}></div>
               <div className="mock-stat">
-                <div className="mock-badge">7 дн</div>
+                <div className="mock-badge">7</div>
                 <div className="mock-badge">1000+</div>
                 <div className="mock-badge">200</div>
               </div>
@@ -108,4 +108,3 @@ export function HighlightSplits({ onShowCase }: Props) {
     </>
   )
 }
-

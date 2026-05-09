@@ -1,11 +1,11 @@
-import { useLanguage } from "../../hooks/useLanguage"
+import type { Translations } from "../../i18n/translations"
 
 type Props = {
+  t: Translations
   onNavigate: (page: "cases" | "contact") => void
 }
 
-export function HeroSection({ onNavigate }: Props) {
-  const { t } = useLanguage()
+export function HeroSection({ t, onNavigate }: Props) {
   const hero = t.home.hero
 
   return (
@@ -99,4 +99,3 @@ export function HeroSection({ onNavigate }: Props) {
     </>
   )
 }
-

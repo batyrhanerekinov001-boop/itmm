@@ -1,7 +1,10 @@
-import { useLanguage } from "../../hooks/useLanguage"
+import type { Translations } from "../../i18n/translations"
 
-export function ConstructionCase() {
-  const { t } = useLanguage()
+type Props = {
+  t: Translations
+}
+
+export function ConstructionCase({ t }: Props) {
   const data = t.cases.details.construction
 
   return (
@@ -51,4 +54,3 @@ export function ConstructionCase() {
     </>
   )
 }
-

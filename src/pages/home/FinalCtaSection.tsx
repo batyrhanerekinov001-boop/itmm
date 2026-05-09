@@ -1,11 +1,11 @@
-import { useLanguage } from "../../hooks/useLanguage"
+import type { Translations } from "../../i18n/translations"
 
 type Props = {
+  t: Translations
   onNavigate: (page: "contact") => void
 }
 
-export function FinalCtaSection({ onNavigate }: Props) {
-  const { t } = useLanguage()
+export function FinalCtaSection({ t, onNavigate }: Props) {
   const cta = t.home.finalCta
 
   return (
@@ -18,4 +18,3 @@ export function FinalCtaSection({ onNavigate }: Props) {
     </div>
   )
 }
-

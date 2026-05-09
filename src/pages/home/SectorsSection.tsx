@@ -1,13 +1,13 @@
 import type { CaseId } from "../../types"
-import { useLanguage } from "../../hooks/useLanguage"
+import type { Translations } from "../../i18n/translations"
 
 type Props = {
+  t: Translations
   onShowCase: (id: CaseId) => void
   onNavigate: (page: "cases" | "contact") => void
 }
 
-export function SectorsSection({ onShowCase, onNavigate }: Props) {
-  const { t } = useLanguage()
+export function SectorsSection({ t, onShowCase, onNavigate }: Props) {
   const section = t.home.sectors
 
   return (
@@ -52,4 +52,3 @@ export function SectorsSection({ onShowCase, onNavigate }: Props) {
     </div>
   )
 }
-
