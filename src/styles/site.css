@@ -92,6 +92,8 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
   display: flex;
   align-items: center;
   justify-content: center;
+  perspective: 800px;
+  transform-style: preserve-3d;
 }
 
 .globe-sphere {
@@ -102,13 +104,15 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
   box-shadow: inset -20px -20px 60px rgba(0,0,0,0.4), 0 0 80px rgba(79,195,247,0.3);
   position: relative;
   overflow: hidden;
-  animation: globeRotate 12s linear infinite;
+  animation: globeSpin 10s linear infinite;
 }
 
 .globe-lines {
   position: absolute;
   inset: 0;
   border-radius: 50%;
+  transform-style: preserve-3d;
+  animation: globeSpin 10s linear infinite;
 }
 
 .globe-line {
@@ -132,6 +136,11 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
   from { box-shadow: inset -20px -20px 60px rgba(0,0,0,0.4), 0 0 80px rgba(79,195,247,0.3); filter: hue-rotate(0deg); }
   50% { box-shadow: inset 20px -20px 60px rgba(0,0,0,0.4), 0 0 80px rgba(79,195,247,0.3); }
   to { box-shadow: inset -20px -20px 60px rgba(0,0,0,0.4), 0 0 80px rgba(79,195,247,0.3); filter: hue-rotate(0deg); }
+}
+
+@keyframes globeSpin {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(360deg); }
 }
 .hero-card-float { position: absolute; background: #fff; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); padding: 14px 18px; font-size: 13px; font-weight: 800; color: var(--text); display: flex; align-items: center; gap: 10px; animation: float 3s ease-in-out infinite; white-space: nowrap; }
 .hero-card-float.c1 { top: 30px; left: -20px; animation-delay: 0s; }
