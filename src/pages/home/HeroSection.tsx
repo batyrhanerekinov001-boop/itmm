@@ -51,7 +51,7 @@ export function HeroSection({ t, onNavigate }: Props) {
             </div>
             <div
               className="hero-card-float c1"
-              style={{ top: "5%", right: "-10%", left: "auto", bottom: "auto" }}
+              style={{ top: "0%", left: "-5%", right: "auto", bottom: "auto" }}
             >
               <div className="card-icon blue">🏗️</div>
               <div>
@@ -70,7 +70,7 @@ export function HeroSection({ t, onNavigate }: Props) {
             </div>
             <div
               className="hero-card-float c2"
-              style={{ top: "45%", left: "-15%", right: "auto", bottom: "auto" }}
+              style={{ top: "40%", left: "-20%", right: "auto", bottom: "auto" }}
             >
               <div className="card-icon orange">🎮</div>
               <div>
@@ -89,7 +89,7 @@ export function HeroSection({ t, onNavigate }: Props) {
             </div>
             <div
               className="hero-card-float c3"
-              style={{ bottom: "5%", right: "-5%", left: "auto", top: "auto" }}
+              style={{ bottom: "10%", right: "-10%", left: "auto", top: "auto" }}
             >
               <div className="card-icon green">🛢️</div>
               <div>
