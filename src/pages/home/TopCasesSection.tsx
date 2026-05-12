@@ -23,7 +23,7 @@ export function TopCasesSection({ t, onShowCase }: Props) {
           <div className="blog-card-img g1" style={{ padding: 0, overflow: "hidden" }}>
             <img
               src="/cases/construction.avif"
-              alt="Личный кабинет подрядчика"
+              alt="Строительство"
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
           </div>
@@ -35,10 +35,15 @@ export function TopCasesSection({ t, onShowCase }: Props) {
         </div>
 
         <div className="blog-card" onClick={() => onShowCase("oil")}>
-          <div className="blog-card-img g2" style={{ height: 140 }}>
-            <div className="big-num" style={{ fontSize: 56 }}>
-              🛢️
-            </div>
+          <div
+            className="blog-card-img g2"
+            style={{ height: 140, padding: 0, overflow: "hidden" }}
+          >
+            <img
+              src="/cases/oil.avif"
+              alt="Нефтегаз Teboil — система учёта нефтепродуктов"
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
           </div>
           <div className="blog-card-body">
             <div className="blog-card-label">{section.cards[1].label}</div>

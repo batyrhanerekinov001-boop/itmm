@@ -67,20 +67,49 @@ export function HighlightSplits({ t, onShowCase }: Props) {
                 {section.oil.button}
               </button>
             </div>
-            <div className="split-visual sv-orange">
-              <div style={{ fontSize: 52 }}>🛢️</div>
+            <div
+              className="split-visual sv-orange"
+              style={{ padding: 0, overflow: "hidden", position: "relative" }}
+            >
+              <img
+                src="/cases/oil.avif"
+                alt="Нефтегаз"
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                }}
+              />
               <div
                 style={{
-                  color: "rgba(255,255,255,0.9)",
-                  fontWeight: 800,
-                  fontSize: 16,
-                  textAlign: "center",
+                  position: "relative",
+                  zIndex: 1,
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  height: "100%",
+                  gap: 12,
+                  background: "rgba(0,0,0,0.45)",
+                  padding: 32,
                 }}
               >
-                {section.oil.visualTitle}
-              </div>
-              <div style={{ color: "rgba(255,255,255,0.5)", fontSize: 13 }}>
-                {section.oil.visualSub}
+                <div style={{ fontSize: 52 }}>🛢️</div>
+                <div
+                  style={{
+                    color: "rgba(255,255,255,0.9)",
+                    fontWeight: 800,
+                    fontSize: 16,
+                    textAlign: "center",
+                  }}
+                >
+                  {section.oil.visualTitle}
+                </div>
+                <div style={{ color: "rgba(255,255,255,0.5)", fontSize: 13 }}>
+                  {section.oil.visualSub}
+                </div>
               </div>
             </div>
           </div>
