@@ -49,7 +49,10 @@ export function HeroSection({ t, onNavigate }: Props) {
                 </div>
               </div>
             </div>
-            <div className="hero-card-float c1">
+            <div
+              className="hero-card-float c1"
+              style={{ top: "5%", right: "-10%", left: "auto", bottom: "auto" }}
+            >
               <div className="card-icon blue">🏗️</div>
               <div>
                 <div
@@ -65,23 +68,10 @@ export function HeroSection({ t, onNavigate }: Props) {
                 <div>{hero.cards[0].bottom}</div>
               </div>
             </div>
-            <div className="hero-card-float c2">
-              <div className="card-icon green">⚡</div>
-              <div>
-                <div
-                  style={{
-                    fontSize: 11,
-                    color: "#888",
-                    fontWeight: 600,
-                    lineHeight: 1.2,
-                  }}
-                >
-                  {hero.cards[1].top}
-                </div>
-                <div>{hero.cards[1].bottom}</div>
-              </div>
-            </div>
-            <div className="hero-card-float c3">
+            <div
+              className="hero-card-float c2"
+              style={{ top: "45%", left: "-15%", right: "auto", bottom: "auto" }}
+            >
               <div className="card-icon orange">🎮</div>
               <div>
                 <div
@@ -95,6 +85,25 @@ export function HeroSection({ t, onNavigate }: Props) {
                   {hero.cards[2].top}
                 </div>
                 <div>{hero.cards[2].bottom}</div>
+              </div>
+            </div>
+            <div
+              className="hero-card-float c3"
+              style={{ bottom: "5%", right: "-5%", left: "auto", top: "auto" }}
+            >
+              <div className="card-icon green">🛢️</div>
+              <div>
+                <div
+                  style={{
+                    fontSize: 11,
+                    color: "#888",
+                    fontWeight: 600,
+                    lineHeight: 1.2,
+                  }}
+                >
+                  {hero.cards[1].top}
+                </div>
+                <div>{hero.cards[1].bottom}</div>
               </div>
             </div>
           </div>
