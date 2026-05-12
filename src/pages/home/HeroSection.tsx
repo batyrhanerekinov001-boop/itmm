@@ -33,7 +33,22 @@ export function HeroSection({ t, onNavigate }: Props) {
           </div>
 
           <div className="hero-visual">
-            <div className="hero-blob"></div>
+            <div className="hero-globe">
+              <div className="globe-sphere">
+                <div className="globe-lines">
+                  {[...Array(6)].map((_, i) => (
+                    <div
+                      key={i}
+                      className="globe-line"
+                      style={{ transform: `rotateY(${i * 30}deg)` }}
+                    />
+                  ))}
+                  {[...Array(5)].map((_, i) => (
+                    <div key={i} className="globe-lat" style={{ top: `${15 + i * 17}%` }} />
+                  ))}
+                </div>
+              </div>
+            </div>
             <div className="hero-card-float c1">
               <div className="card-icon blue">🏗️</div>
               <div>
