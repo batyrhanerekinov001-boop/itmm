@@ -38,31 +38,12 @@ export function HighlightSplits({ t, onShowCase }: Props) {
               </button>
             </div>
           </div>
-          <div className="split-visual sv-blue">
-            <div className="mock-window">
-              <div className="mock-bar">
-                <div className="mock-dot r"></div>
-                <div className="mock-dot y"></div>
-                <div className="mock-dot g"></div>
-              </div>
-              <div
-                style={{
-                  color: "rgba(255,255,255,0.5)",
-                  fontSize: 11,
-                  marginBottom: 10,
-                }}
-              >
-                {section.construction.mockTitle}
-              </div>
-              <div className="mock-row" style={{ width: "80%" }}></div>
-              <div className="mock-row" style={{ width: "60%" }}></div>
-              <div className="mock-row" style={{ width: "40%" }}></div>
-              <div className="mock-stat">
-                <div className="mock-badge">7</div>
-                <div className="mock-badge">1000+</div>
-                <div className="mock-badge">200</div>
-              </div>
-            </div>
+          <div className="split-visual sv-blue" style={{ padding: 0, overflow: "hidden" }}>
+            <img
+              src="/cases/construction.avif"
+              alt="Личный кабинет подрядчика"
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
           </div>
         </div>
       </div>
