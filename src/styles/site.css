@@ -92,8 +92,6 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
   display: flex;
   align-items: center;
   justify-content: center;
-  perspective: 800px;
-  transform-style: preserve-3d;
 }
 
 .globe-sphere {
@@ -104,15 +102,16 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
   box-shadow: inset -20px -20px 60px rgba(0,0,0,0.4), 0 0 80px rgba(79,195,247,0.3);
   position: relative;
   overflow: hidden;
-  animation: globeSpin 10s linear infinite;
+  animation: none;
+  transform: none;
 }
 
 .globe-lines {
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  transform-style: preserve-3d;
-  animation: globeSpin 10s linear infinite;
+  animation: spinLines 10s linear infinite;
+  transform-origin: center;
 }
 
 .globe-line {
@@ -138,7 +137,7 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
   to { box-shadow: inset -20px -20px 60px rgba(0,0,0,0.4), 0 0 80px rgba(79,195,247,0.3); filter: hue-rotate(0deg); }
 }
 
-@keyframes globeSpin {
+@keyframes spinLines {
   from { transform: rotateY(0deg); }
   to { transform: rotateY(360deg); }
 }
