@@ -8,16 +8,25 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   if (!token || !chatId) return res.status(500).json({ error: "Telegram is not configured" })
 
-  const { name, company, email, industry, message } = (req.body || {}) as Record<
+  const { name, company, email, industry, phone, message } = (req.body || {}) as Record<
     string,
     unknown
   >
 
   const safe = (v: unknown) => (typeof v === "string" ? v.trim() : "")
 
-  const text = `🔔 Новая заявка с сайта ITMM!\n\n👤 Имя: ${safe(name)}\n🏢 Компания: ${safe(
-    company,
-  )}\n📧 Email: ${safe(email)}\n🏭 Отрасль: ${safe(industry)}\n💬 Сообщение: ${safe(message)}`
+  const lines = [
+    "🔔 Новая заявка с сайта ITMM!",
+    "",
+    `👤 Имя: ${safe(name)}`,
+    safe(phone) ? `📱 Телефон: ${safe(phone)}` : "",
+    safe(company) ? `🏢 Компания: ${safe(company)}` : "",
+    safe(email) ? `📧 Email: ${safe(email)}` : "",
+    safe(industry) ? `🏭 Отрасль: ${safe(industry)}` : "",
+    `💬 Сообщение: ${safe(message)}`,
+  ].filter(Boolean)
+
+  const text = lines.join("\n")
 
   try {
     const tgRes = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
@@ -36,4 +45,3 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(502).json({ error: "Telegram unavailable" })
   }
 }
-

@@ -1,5 +1,5 @@
-import { Menu, X } from "lucide-react"
-import { useState } from "react"
+import { Menu, Moon, Sun, X } from "lucide-react"
+import { useEffect, useState } from "react"
 import type { Lang, Translations } from "../i18n/translations"
 import type { PageId } from "../types"
 
@@ -13,6 +13,11 @@ type Props = {
 
 export function NavBar({ t, lang, changeLang, page, onNavigate }: Props) {
   const [open, setOpen] = useState(false)
+  const [theme, setTheme] = useState<"light" | "dark">(() => {
+    const saved = localStorage.getItem("theme")
+    if (saved === "dark" || saved === "light") return saved
+    return "light"
+  })
 
   function renderLanguageSwitch() {
     return (
@@ -28,6 +33,24 @@ export function NavBar({ t, lang, changeLang, page, onNavigate }: Props) {
           </button>
         ))}
       </div>
+    )
+  }
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme)
+    localStorage.setItem("theme", theme)
+  }, [theme])
+
+  function renderThemeToggle() {
+    return (
+      <button
+        type="button"
+        className="theme-btn"
+        aria-label={theme === "dark" ? "Light mode" : "Dark mode"}
+        onClick={() => setTheme((s) => (s === "dark" ? "light" : "dark"))}
+      >
+        {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+      </button>
     )
   }
 
@@ -73,6 +96,7 @@ export function NavBar({ t, lang, changeLang, page, onNavigate }: Props) {
             +7 701 877 14 14
           </a>
           {renderLanguageSwitch()}
+          {renderThemeToggle()}
 
           <button
             className="nav-hamburger"
@@ -146,6 +170,7 @@ export function NavBar({ t, lang, changeLang, page, onNavigate }: Props) {
 
             <div className="nav-mobile-meta">
               {renderLanguageSwitch()}
+              {renderThemeToggle()}
               <a className="nav-phone" href="tel:+77018771414">
                 +7 701 877 14 14
               </a>

@@ -3,9 +3,10 @@ import type { Translations } from "../../i18n/translations"
 type Props = {
   t: Translations
   onNavigate: (page: "cases" | "contact") => void
+  onOpenModal: () => void
 }
 
-export function HeroSection({ t, onNavigate }: Props) {
+export function HeroSection({ t, onNavigate, onOpenModal }: Props) {
   const hero = t.home.hero
 
   return (
@@ -26,7 +27,7 @@ export function HeroSection({ t, onNavigate }: Props) {
               <button className="btn-primary" onClick={() => onNavigate("cases")}>
                 {hero.casesButton}
               </button>
-              <button className="btn-outline" onClick={() => onNavigate("contact")}>
+              <button className="btn-outline" onClick={onOpenModal}>
                 {hero.discussButton}
               </button>
             </div>

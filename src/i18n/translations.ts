@@ -23,6 +23,9 @@ export type Translations = {
       cards: Array<{ top: string; bottom: string }>
       logosLabel: string
     }
+    counters: {
+      items: Array<{ label: string }>
+    }
     topCases: {
       eyebrow: string
       title: [string, string]
@@ -117,6 +120,20 @@ export type Translations = {
       errorConnection: string
     }
   }
+  modal: {
+    title: string
+    name: string
+    phone: string
+    message: string
+    submit: string
+    sending: string
+    close: string
+  }
+  exitPopup: {
+    text: string
+    primary: string
+    secondary: string
+  }
   floatingWhatsappLabel: string
 }
 
@@ -148,6 +165,14 @@ export const translations: Record<Lang, Translations> = {
           { top: "Ритейл · Геймификация", bottom: "7 игр за 1 год" },
         ],
         logosLabel: "Реализовано для ведущих компаний",
+      },
+      counters: {
+        items: [
+          { label: "Проектов выполнено" },
+          { label: "Лет на рынке" },
+          { label: "Автоматизация процессов" },
+          { label: "Экономия клиентов в год" },
+        ],
       },
       topCases: {
         eyebrow: "Топ кейсы",
@@ -502,6 +527,20 @@ export const translations: Record<Lang, Translations> = {
         errorConnection: "Не удалось отправить заявку. Проверьте соединение.",
       },
     },
+    modal: {
+      title: "Обсудить проект",
+      name: "Имя",
+      phone: "Телефон",
+      message: "Сообщение",
+      submit: "Отправить заявку →",
+      sending: "Отправляем...",
+      close: "Закрыть",
+    },
+    exitPopup: {
+      text: "Подождите! Получите бесплатный аудит вашего бизнеса",
+      primary: "Получить аудит",
+      secondary: "Нет, спасибо",
+    },
     floatingWhatsappLabel: "Написать в WhatsApp",
   },
   KZ: {} as Translations,
@@ -538,6 +577,14 @@ translations.KZ = {
         { top: "Ритейл · Геймификация", bottom: "1 жылда 7 ойын" },
       ],
       logosLabel: "Сала көшбасшылары үшін жүзеге асырылған",
+    },
+    counters: {
+      items: [
+        { label: "Жобалар орындалды" },
+        { label: "Нарықтағы жыл" },
+        { label: "Процестерді автоматтандыру" },
+        { label: "Клиенттердің жылдық үнемі" },
+      ],
     },
     topCases: {
       ...translations.RU.home.topCases,
@@ -896,6 +943,20 @@ translations.KZ = {
       },
     },
   },
+  modal: {
+    title: "Жобаны талқылау",
+    name: "Аты-жөні",
+    phone: "Телефон",
+    message: "Хабарлама",
+    submit: "Өтінімді жіберу →",
+    sending: "Жіберілуде...",
+    close: "Жабу",
+  },
+  exitPopup: {
+    text: "Тоқтаңыз! Бизнесіңізге тегін аудит алыңыз",
+    primary: "Аудит алу",
+    secondary: "Жоқ, рахмет",
+  },
   floatingWhatsappLabel: "WhatsApp-қа жазу",
 }
 
@@ -929,6 +990,14 @@ translations.EN = {
         { top: "Retail · Gamification", bottom: "7 games in year one" },
       ],
       logosLabel: "Delivered for leading companies",
+    },
+    counters: {
+      items: [
+        { label: "Projects delivered" },
+        { label: "Years on the market" },
+        { label: "Process automation" },
+        { label: "Client savings per year" },
+      ],
     },
     topCases: {
       ...translations.RU.home.topCases,
@@ -1287,6 +1356,20 @@ translations.EN = {
         chips: ["📟 Telemetry", "🏭 ERP", "📊 Analytics", "🤖 AI-ready"],
       },
     },
+  },
+  modal: {
+    title: "Discuss project",
+    name: "Name",
+    phone: "Phone",
+    message: "Message",
+    submit: "Send request →",
+    sending: "Sending...",
+    close: "Close",
+  },
+  exitPopup: {
+    text: "Wait! Get a free audit of your business",
+    primary: "Get audit",
+    secondary: "No, thanks",
   },
   floatingWhatsappLabel: "Message on WhatsApp",
 }

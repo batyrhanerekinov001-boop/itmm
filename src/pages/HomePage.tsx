@@ -1,4 +1,5 @@
 import { Footer } from "../components/Footer"
+import { CounterSection } from "../components/CounterSection"
 import type { Translations } from "../i18n/translations"
 import type { CaseId } from "../types"
 import { ApproachSection } from "./home/ApproachSection"
@@ -14,12 +15,14 @@ type Props = {
   t: Translations
   onNavigate: (page: "cases" | "contact") => void
   onShowCase: (id: CaseId) => void
+  onOpenModal: () => void
 }
 
-export function HomePage({ t, onNavigate, onShowCase }: Props) {
+export function HomePage({ t, onNavigate, onShowCase, onOpenModal }: Props) {
   return (
     <>
-      <HeroSection t={t} onNavigate={onNavigate} />
+      <HeroSection t={t} onNavigate={onNavigate} onOpenModal={onOpenModal} />
+      <CounterSection t={t} />
       <TopCasesSection t={t} onShowCase={onShowCase} />
       <ApproachSection t={t} />
       <HighlightSplits t={t} onShowCase={onShowCase} />
