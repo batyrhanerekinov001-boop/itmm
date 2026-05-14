@@ -32,7 +32,7 @@ export function HeroSection({ t, onNavigate }: Props) {
             </div>
           </div>
 
-          <div className="hero-visual" style={{ overflow: "visible" }}>
+          <div className="hero-visual" style={{ overflow: "visible", position: "relative" }}>
             <div className="hero-globe">
               <div className="globe-sphere">
                 <div className="globe-lines">
@@ -49,7 +49,10 @@ export function HeroSection({ t, onNavigate }: Props) {
                 </div>
               </div>
             </div>
-            <div className="hero-card-float c1">
+            <div
+              className="hero-card-float c1"
+              style={{ position: "absolute", top: "0%", left: "0%", right: "auto", bottom: "auto" }}
+            >
               <div className="card-icon blue">🏗️</div>
               <div>
                 <div
@@ -65,7 +68,10 @@ export function HeroSection({ t, onNavigate }: Props) {
                 <div>{hero.cards[0].bottom}</div>
               </div>
             </div>
-            <div className="hero-card-float c2">
+            <div
+              className="hero-card-float c2"
+              style={{ position: "absolute", top: "40%", right: "-5%", left: "auto", bottom: "auto" }}
+            >
               <div className="card-icon green">🛢️</div>
               <div>
                 <div
@@ -81,7 +87,10 @@ export function HeroSection({ t, onNavigate }: Props) {
                 <div>{hero.cards[1].bottom}</div>
               </div>
             </div>
-            <div className="hero-card-float c3">
+            <div
+              className="hero-card-float c3"
+              style={{ position: "absolute", bottom: "0%", left: "5%", right: "auto", top: "auto" }}
+            >
               <div className="card-icon orange">🎮</div>
               <div>
                 <div

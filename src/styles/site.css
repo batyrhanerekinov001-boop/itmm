@@ -142,19 +142,6 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
   to { transform: rotateY(360deg); }
 }
 .hero-card-float { position: absolute; background: #fff; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); padding: 14px 18px; font-size: 13px; font-weight: 800; color: var(--text); display: flex; align-items: center; gap: 10px; animation: float 3s ease-in-out infinite; white-space: nowrap; }
-.hero-card-float.c1 {
-  top: 5%;
-  left: 0%;
-}
-.hero-card-float.c2 {
-  top: 50%;
-  left: -5%;
-}
-.hero-card-float.c3 {
-  top: 10%;
-  right: -5%;
-  left: auto;
-}
 @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-8px); } }
 @keyframes float3 { 0%, 100% { transform: translateY(-50%); } 50% { transform: translateY(calc(-50% - 8px)); } }
 .card-icon { width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
