@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from "react"
 import { AnnounceBar } from "./components/AnnounceBar"
 import { CookieBanner } from "./components/CookieBanner"
 import { CustomCursor } from "./components/CustomCursor"
-import { ExitPopup } from "./components/ExitPopup"
 import { FloatingWhatsAppButton } from "./components/FloatingWhatsAppButton"
 import { Modal } from "./components/Modal"
 import { NavBar } from "./components/NavBar"
@@ -109,7 +108,6 @@ export default function App() {
 
       <FloatingWhatsAppButton t={t} />
       <CookieBanner />
-      <ExitPopup t={t} onOpenForm={openModal} />
       <Modal open={modalOpen} t={t} onClose={() => setModalOpen(false)} />
     </>
   )
