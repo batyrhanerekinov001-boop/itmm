@@ -14,16 +14,18 @@ export function ExitPopup({ t, onOpenForm }: Props) {
   useEffect(() => {
     const fine = window.matchMedia?.("(pointer: fine)")?.matches ?? true
     if (!fine) return
-    if (sessionStorage.getItem(STORAGE_KEY) === "1") return
+    if (sessionStorage.getItem("exitPopupShown") === "true") return
 
-    const onLeave = (e: MouseEvent) => {
-      if (e.clientY > 0) return
-      sessionStorage.setItem(STORAGE_KEY, "1")
+    const onOut = (e: MouseEvent) => {
+      if (e.clientY >= 10) return
+      const next = e.relatedTarget as Node | null
+      if (next) return
+      sessionStorage.setItem("exitPopupShown", "true")
       setOpen(true)
     }
 
-    document.addEventListener("mouseleave", onLeave)
-    return () => document.removeEventListener("mouseleave", onLeave)
+    document.addEventListener("mouseout", onOut)
+    return () => document.removeEventListener("mouseout", onOut)
   }, [])
 
   if (!open) return null
@@ -53,4 +55,3 @@ export function ExitPopup({ t, onOpenForm }: Props) {
     </div>
   )
 }
-
