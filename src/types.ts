@@ -1,4 +1,4 @@
-export type PageId = "home" | "cases" | "contact"
+export type PageId = "home" | "cases" | "contact" | "notFound"
 export type CaseId = "construction" | "retail" | "oil" | "energy"
 
 export type LeadPayload = {
