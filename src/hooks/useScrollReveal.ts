@@ -12,9 +12,6 @@ export function useScrollReveal(options: Options = {}) {
     const root = ref.current
     if (!root) return
 
-    const items = Array.from(root.querySelectorAll<HTMLElement>(".fade-in-up"))
-    if (items.length === 0) return
-
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -27,10 +24,37 @@ export function useScrollReveal(options: Options = {}) {
       { threshold: options.threshold ?? 0.2, rootMargin: options.rootMargin },
     )
 
-    items.forEach((el) => io.observe(el))
-    return () => io.disconnect()
+    const inViewport = (el: HTMLElement) => {
+      const rect = el.getBoundingClientRect()
+      const vh = window.innerHeight || document.documentElement.clientHeight
+      return rect.top < vh * 0.95 && rect.bottom > 0
+    }
+
+    const observeItems = () => {
+      const items = Array.from(root.querySelectorAll<HTMLElement>(".fade-in-up"))
+      if (items.length === 0) return
+
+      items.forEach((el) => {
+        if (el.dataset.revealObserved === "1") return
+        el.dataset.revealObserved = "1"
+        if (inViewport(el)) {
+          el.classList.add("visible")
+          return
+        }
+        io.observe(el)
+      })
+    }
+
+    observeItems()
+
+    const mo = new MutationObserver(() => observeItems())
+    mo.observe(root, { childList: true, subtree: true })
+
+    return () => {
+      mo.disconnect()
+      io.disconnect()
+    }
   }, [options.rootMargin, options.threshold])
 
   return ref
 }
-
