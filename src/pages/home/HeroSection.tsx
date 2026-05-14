@@ -32,7 +32,7 @@ export function HeroSection({ t, onNavigate }: Props) {
             </div>
           </div>
 
-          <div className="hero-visual">
+          <div className="hero-visual" style={{ overflow: "visible" }}>
             <div className="hero-globe">
               <div className="globe-sphere">
                 <div className="globe-lines">
@@ -66,7 +66,7 @@ export function HeroSection({ t, onNavigate }: Props) {
               </div>
             </div>
             <div className="hero-card-float c2">
-              <div className="card-icon green">⚡</div>
+              <div className="card-icon green">🛢️</div>
               <div>
                 <div
                   style={{
