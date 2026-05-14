@@ -294,6 +294,10 @@ export const translations: Record<Lang, Translations> = {
             title: "Цифровые двойники",
             desc: "Создаём виртуальные копии объектов для оптимизации",
           },
+          {
+            title: "Video Analytics Pipeline",
+            desc: "Автоматический анализ видеопотоков с применением компьютерного зрения и ИИ",
+          },
         ],
       },
       faq: {
@@ -708,6 +712,10 @@ translations.KZ = {
           title: "Цифрлық егіздер",
           desc: "Оңтайландыру үшін объектілердің виртуалды көшірмелерін жасаймыз",
         },
+        {
+          title: "Video Analytics Pipeline",
+          desc: "Компьютерлік көру және ЖИ көмегімен видеопотоктарды автоматты талдау",
+        },
       ],
     },
     faq: {
@@ -1121,6 +1129,10 @@ translations.EN = {
         {
           title: "Digital twins",
           desc: "Building virtual replicas of assets to optimize operations",
+        },
+        {
+          title: "Video Analytics Pipeline",
+          desc: "Automated video stream analysis using computer vision and AI",
         },
       ],
     },
