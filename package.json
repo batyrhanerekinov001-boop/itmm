@@ -4,10 +4,10 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently -n web,api -c blue,green \"vite\" \"tsx watch api/server.ts\"",
-    "build": "vite build && tsc -p api/tsconfig.json",
+    "dev": "vite",
+    "build": "vite build",
     "preview": "vite preview",
-    "start": "node dist-api/server.js"
+    "start": "vite preview"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -23,6 +23,7 @@
     "@types/node": "^20.14.9",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
+    "@vercel/node": "^3.2.28",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.19",
     "concurrently": "^8.2.2",
