@@ -6,7 +6,7 @@ type Props = {
   onOpenForm: () => void
 }
 
-const STORAGE_KEY = "exit-popup-shown"
+const STORAGE_KEY = "exitPopupShown"
 
 export function ExitPopup({ t, onOpenForm }: Props) {
   const [open, setOpen] = useState(false)
@@ -14,18 +14,18 @@ export function ExitPopup({ t, onOpenForm }: Props) {
   useEffect(() => {
     const fine = window.matchMedia?.("(pointer: fine)")?.matches ?? true
     if (!fine) return
-    if (sessionStorage.getItem("exitPopupShown") === "true") return
+    const shown = localStorage.getItem(STORAGE_KEY)
+    if (shown) return
 
-    const onOut = (e: MouseEvent) => {
-      if (e.clientY >= 10) return
-      const next = e.relatedTarget as Node | null
-      if (next) return
-      sessionStorage.setItem("exitPopupShown", "true")
-      setOpen(true)
+    const handleMouseLeave = (e: MouseEvent) => {
+      if (e.clientY < 10) {
+        setOpen(true)
+        localStorage.setItem(STORAGE_KEY, "true")
+      }
     }
 
-    document.addEventListener("mouseout", onOut)
-    return () => document.removeEventListener("mouseout", onOut)
+    document.addEventListener("mouseleave", handleMouseLeave)
+    return () => document.removeEventListener("mouseleave", handleMouseLeave)
   }, [])
 
   if (!open) return null
