@@ -7,6 +7,7 @@ import { FinalCtaSection } from "./home/FinalCtaSection"
 import { HeroSection } from "./home/HeroSection"
 import { HighlightSplits } from "./home/HighlightSplits"
 import { SectorsSection } from "./home/SectorsSection"
+import { TechnologiesSection } from "./home/TechnologiesSection"
 import { TopCasesSection } from "./home/TopCasesSection"
 
 type Props = {
@@ -23,6 +24,7 @@ export function HomePage({ t, onNavigate, onShowCase }: Props) {
       <ApproachSection t={t} />
       <HighlightSplits t={t} onShowCase={onShowCase} />
       <SectorsSection t={t} onShowCase={onShowCase} onNavigate={onNavigate} />
+      <TechnologiesSection t={t} />
       <FaqSection t={t} />
       <FinalCtaSection t={t} onNavigate={() => onNavigate("contact")} />
 

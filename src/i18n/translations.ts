@@ -60,6 +60,11 @@ export type Translations = {
       allCases: string
       discuss: string
     }
+    technologies: {
+      title: string
+      subtitle: string
+      items: Array<{ title: string; desc: string }>
+    }
     faq: {
       eyebrow: string
       title: string
@@ -227,6 +232,44 @@ export const translations: Record<Lang, Translations> = {
         ],
         allCases: "Все кейсы",
         discuss: "Обсудить проект →",
+      },
+      technologies: {
+        title: "Технологии которые мы используем",
+        subtitle: "Мы работаем с передовыми технологиями настоящего и будущего",
+        items: [
+          {
+            title: "Нейросети и ИИ",
+            desc: "Разрабатываем и внедряем AI-решения для автоматизации бизнес-процессов",
+          },
+          {
+            title: "VR/AR дизайн",
+            desc: "Создаём интерактивные интерфейсы и обучающие симуляции",
+          },
+          {
+            title: "Кибербезопасность",
+            desc: "Защищаем данные и системы от современных угроз",
+          },
+          {
+            title: "Цифровые экосистемы",
+            desc: "Проектируем сложные цифровые среды и платформы",
+          },
+          {
+            title: "Возобновляемая энергетика",
+            desc: "Цифровизация энергосистем и климатических решений",
+          },
+          {
+            title: "Робототехника",
+            desc: "Интеграция роботизированных систем в производство и логистику",
+          },
+          {
+            title: "Этика ИИ",
+            desc: "Аудит и разработка стандартов для AI-систем",
+          },
+          {
+            title: "Цифровые двойники",
+            desc: "Создаём виртуальные копии объектов для оптимизации",
+          },
+        ],
       },
       faq: {
         eyebrow: "FAQ",
@@ -582,6 +625,44 @@ translations.KZ = {
       allCases: "Барлық кейстер",
       discuss: "Жобаны талқылау →",
     },
+    technologies: {
+      title: "Біз қолданатын технологиялар",
+      subtitle: "Біз бүгінгі және болашақтың озық технологияларымен жұмыс істейміз",
+      items: [
+        {
+          title: "Нейрондық желілер және ЖИ",
+          desc: "Бизнес-процестерді автоматтандыру үшін AI шешімдерін әзірлейміз және енгіземіз",
+        },
+        {
+          title: "VR/AR дизайн",
+          desc: "Интерактивті интерфейстер мен оқыту симуляцияларын жасаймыз",
+        },
+        {
+          title: "Киберқауіпсіздік",
+          desc: "Деректер мен жүйелерді заманауи қауіптерден қорғаймыз",
+        },
+        {
+          title: "Цифрлық экожүйелер",
+          desc: "Күрделі цифрлық орта мен платформаларды жобалаймыз",
+        },
+        {
+          title: "Жаңартылатын энергетика",
+          desc: "Энергожүйелерді және климаттық шешімдерді цифрландыру",
+        },
+        {
+          title: "Робототехника",
+          desc: "Өндіріс пен логистикаға роботтандырылған жүйелерді интеграциялау",
+        },
+        {
+          title: "ЖИ этикасы",
+          desc: "AI жүйелері үшін стандарттарды аудиттеу және әзірлеу",
+        },
+        {
+          title: "Цифрлық егіздер",
+          desc: "Оңтайландыру үшін объектілердің виртуалды көшірмелерін жасаймыз",
+        },
+      ],
+    },
     faq: {
       eyebrow: "FAQ",
       title: "Жиі қойылатын сұрақтар",
@@ -935,6 +1016,44 @@ translations.EN = {
       ],
       allCases: "All cases",
       discuss: "Discuss project →",
+    },
+    technologies: {
+      title: "Technologies we use",
+      subtitle: "We work with cutting-edge technologies of today and tomorrow",
+      items: [
+        {
+          title: "Neural networks & AI",
+          desc: "We design and implement AI solutions to automate business processes",
+        },
+        {
+          title: "VR/AR design",
+          desc: "We create interactive interfaces and training simulations",
+        },
+        {
+          title: "Cybersecurity",
+          desc: "We protect data and systems from modern threats",
+        },
+        {
+          title: "Digital ecosystems",
+          desc: "We architect complex digital environments and platforms",
+        },
+        {
+          title: "Renewable energy",
+          desc: "Digitalization of energy systems and climate solutions",
+        },
+        {
+          title: "Robotics",
+          desc: "Integrating robotic systems into production and logistics",
+        },
+        {
+          title: "AI ethics",
+          desc: "Auditing and developing standards for AI systems",
+        },
+        {
+          title: "Digital twins",
+          desc: "Building virtual replicas of assets to optimize operations",
+        },
+      ],
     },
     faq: {
       eyebrow: "FAQ",

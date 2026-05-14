@@ -142,9 +142,18 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
   to { transform: rotateY(360deg); }
 }
 .hero-card-float { position: absolute; background: #fff; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); padding: 14px 18px; font-size: 13px; font-weight: 800; color: var(--text); display: flex; align-items: center; gap: 10px; animation: float 3s ease-in-out infinite; white-space: nowrap; }
-.hero-card-float.c1 { top: 30px; left: -20px; animation-delay: 0s; }
-.hero-card-float.c2 { bottom: 160px; left: -40px; animation-delay: 1s; }
-.hero-card-float.c3 { bottom: 60px; left: -20px; animation: float 3s ease-in-out infinite; animation-delay: 2s; }
+.hero-card-float.c1 {
+  top: 8%;
+  left: 2%;
+}
+.hero-card-float.c2 {
+  top: 42%;
+  left: -2%;
+}
+.hero-card-float.c3 {
+  bottom: 8%;
+  right: 0%;
+}
 @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-8px); } }
 @keyframes float3 { 0%, 100% { transform: translateY(-50%); } 50% { transform: translateY(calc(-50% - 8px)); } }
 .card-icon { width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
@@ -209,6 +218,9 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 .s-icon { font-size: 28px; margin-bottom: 14px; }
 .sector-card h3 { font-size: 16px; font-weight: 900; margin-bottom: 8px; font-family: var(--font-display); letter-spacing: -0.2px; }
 .sector-card p { font-size: 13px; color: var(--sub); line-height: 1.55; }
+.tech-card { cursor: default; }
+.tech-icon { color: var(--blue); margin-bottom: 14px; }
+.tech-card p { font-size: 14px; }
 
 .dark-cta { background: var(--text); color: #fff; padding: 80px 60px; text-align: center; }
 .dark-cta h2 { font-size: clamp(32px,4vw,52px); font-weight: 900; font-family: var(--font-display); letter-spacing: -1.5px; margin-bottom: 18px; }
