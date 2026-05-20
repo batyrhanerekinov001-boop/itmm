@@ -35,16 +35,6 @@ export function CasesPage({ t, activeCase, onSelectCase, onNavigateToContact }: 
       </div>
 
       <div className="case-body">
-        {current.image && (
-          <div className="split-visual" style={{ padding: 0, overflow: "hidden", height: 420 }}>
-            <img
-              src={current.image}
-              alt={current.title}
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
-            />
-          </div>
-        )}
-
         <div className="case-two-col" style={{ marginTop: 40 }}>
           <div>
             <div className="col-head">Описание</div>
@@ -56,22 +46,51 @@ export function CasesPage({ t, activeCase, onSelectCase, onNavigateToContact }: 
           </div>
         </div>
 
-        <div className="case-two-col" style={{ marginTop: 40 }}>
-          <div>
-            <div className="col-head">Проблема</div>
-            <p>{current.problem}</p>
-          </div>
-          <div>
-            <div className="col-head">Решение</div>
-            <p>{current.solution}</p>
+        <div style={{ marginTop: 40 }}>
+          <div className="col-head">Галерея</div>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+              gap: 16,
+            }}
+          >
+            {current.images.map((src) => (
+              <img
+                key={src}
+                src={src}
+                alt={current.title}
+                style={{
+                  width: "100%",
+                  height: 260,
+                  objectFit: "cover",
+                  borderRadius: 12,
+                  boxShadow: "0 16px 40px rgba(0,0,0,0.12)",
+                  border: "1px solid rgba(0,0,0,0.04)",
+                }}
+              />
+            ))}
           </div>
         </div>
 
         <div style={{ marginTop: 40 }}>
           <div className="col-head">Результаты</div>
-          <ul className="ul-clean">
+          <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
             {current.results.map((r) => (
-              <li key={r}>{r}</li>
+              <li
+                key={r}
+                style={{
+                  display: "flex",
+                  alignItems: "flex-start",
+                  gap: 10,
+                  padding: "12px 0",
+                  borderBottom: "1px solid var(--border)",
+                  color: "var(--sub)",
+                }}
+              >
+                <span style={{ color: "var(--blue)", fontWeight: 900, lineHeight: 1.2 }}>✓</span>
+                <span style={{ color: "var(--sub)" }}>{r}</span>
+              </li>
             ))}
           </ul>
         </div>
@@ -81,7 +100,7 @@ export function CasesPage({ t, activeCase, onSelectCase, onNavigateToContact }: 
         <h2>{t.cases.cta.title}</h2>
         <p>{t.cases.cta.text}</p>
         <button className="btn-white" onClick={onNavigateToContact}>
-          {t.cases.cta.button}
+          Обсудить похожий проект
         </button>
       </div>
 
