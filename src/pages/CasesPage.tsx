@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react"
 import { Footer } from "../components/Footer"
 import { caseTabs, cases } from "../data/cases"
 import type { Translations } from "../i18n/translations"
@@ -12,6 +13,16 @@ type Props = {
 
 export function CasesPage({ t, activeCase, onSelectCase, onNavigateToContact }: Props) {
   const current = cases.find((c) => c.id === activeCase) ?? cases[0]
+  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null)
+
+  useEffect(() => {
+    if (!lightboxSrc) return
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightboxSrc(null)
+    }
+    window.addEventListener("keydown", onKeyDown)
+    return () => window.removeEventListener("keydown", onKeyDown)
+  }, [lightboxSrc])
 
   return (
     <>
@@ -60,13 +71,16 @@ export function CasesPage({ t, activeCase, onSelectCase, onNavigateToContact }: 
                 key={src}
                 src={src}
                 alt={current.title}
+                onClick={() => setLightboxSrc(src)}
                 style={{
                   width: "100%",
-                  height: 260,
-                  objectFit: "cover",
+                  height: 300,
+                  objectFit: "contain",
+                  background: "#f5f5f5",
                   borderRadius: 12,
                   boxShadow: "0 16px 40px rgba(0,0,0,0.12)",
                   border: "1px solid rgba(0,0,0,0.04)",
+                  cursor: "pointer",
                 }}
               />
             ))}
@@ -105,6 +119,62 @@ export function CasesPage({ t, activeCase, onSelectCase, onNavigateToContact }: 
       </div>
 
       <Footer t={t} />
+
+      {lightboxSrc && (
+        <div
+          role="button"
+          tabIndex={-1}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setLightboxSrc(null)
+          }}
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 900,
+            background: "rgba(0,0,0,0.8)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: 20,
+          }}
+        >
+          <div style={{ position: "relative", width: "min(1100px, 92vw)" }}>
+            <button
+              type="button"
+              onClick={() => setLightboxSrc(null)}
+              style={{
+                position: "absolute",
+                right: 0,
+                top: -48,
+                width: 40,
+                height: 40,
+                borderRadius: 12,
+                border: "1px solid rgba(255,255,255,0.25)",
+                background: "rgba(0,0,0,0.35)",
+                color: "#fff",
+                cursor: "pointer",
+                fontSize: 22,
+                lineHeight: "40px",
+              }}
+              aria-label="Закрыть"
+            >
+              ×
+            </button>
+            <img
+              src={lightboxSrc}
+              alt={current.title}
+              style={{
+                width: "100%",
+                maxHeight: "86vh",
+                objectFit: "contain",
+                borderRadius: 14,
+                background: "#f5f5f5",
+                boxShadow: "0 24px 80px rgba(0,0,0,0.45)",
+              }}
+            />
+          </div>
+        </div>
+      )}
     </>
   )
 }
