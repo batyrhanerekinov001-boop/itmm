@@ -8,8 +8,12 @@ type Props = {
 
 export function FaqSection({ t }: Props) {
   const items = t.home.faq.items
-  const [active, setActive] = useState(items[0]?.id ?? "")
+  const [activeIndex, setActiveIndex] = useState<number | null>(null)
   const revealRef = useScrollReveal()
+
+  const toggle = (i: number) => {
+    setActiveIndex((prev) => (prev === i ? null : i))
+  }
 
   return (
     <div className="section-wrap faq-section" ref={revealRef}>
@@ -19,14 +23,14 @@ export function FaqSection({ t }: Props) {
         {items.map((item, index) => (
           <div
             key={item.id}
-            className={`faq-item fade-in-up${active === item.id ? " open" : ""}`}
+            className={`faq-item fade-in-up${activeIndex === index ? " open" : ""}`}
             style={{ transitionDelay: `${index * 100}ms` }}
           >
-            <button className="faq-question" onClick={() => setActive(item.id)}>
+            <button className="faq-question" onClick={() => toggle(index)}>
               <span>{item.q}</span>
-              <span>{active === item.id ? "−" : "+"}</span>
+              <span>{activeIndex === index ? "−" : "+"}</span>
             </button>
-            {active === item.id && <p className="faq-answer">{item.a}</p>}
+            <p className="faq-answer">{item.a}</p>
           </div>
         ))}
       </div>

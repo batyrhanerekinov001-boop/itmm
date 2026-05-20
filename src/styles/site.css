@@ -331,7 +331,21 @@ footer { background: var(--text); color: rgba(255,255,255,0.5); padding: 32px 60
 .faq-item { border: 1.5px solid var(--border); border-radius: 12px; background: var(--card); overflow: hidden; }
 .faq-item.open { border-color: #cfd8f0; box-shadow: 0 8px 24px rgba(58,109,240,0.08); }
 .faq-question { width: 100%; border: 0; background: var(--card); display: flex; align-items: center; justify-content: space-between; gap: 20px; cursor: pointer; padding: 18px 20px; color: var(--text); font-size: 16px; font-weight: 700; text-align: left; }
-.faq-answer { color: var(--sub); font-size: 15px; line-height: 1.7; padding: 0 20px 18px; }
+.faq-answer {
+  color: var(--sub);
+  font-size: 15px;
+  line-height: 1.7;
+  padding: 0 20px;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.25s ease, opacity 0.2s ease, padding 0.25s ease;
+}
+.faq-item.open .faq-answer {
+  padding: 0 20px 18px;
+  max-height: 260px;
+  opacity: 1;
+}
 
 .modal-overlay { position: fixed; inset: 0; z-index: 700; background: rgba(0,0,0,0.55); display: flex; align-items: center; justify-content: center; padding: 20px; }
 .modal-card { position: relative; width: min(520px, 92vw); background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px 22px; box-shadow: 0 24px 70px rgba(0,0,0,0.22); }
