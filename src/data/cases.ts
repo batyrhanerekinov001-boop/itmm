@@ -32,7 +32,6 @@ export const cases: CaseData[] = [
       "/cases/construction-1.png",
       "/cases/construction-2.png",
       "/cases/construction-3.png",
-      "/cases/construction-4.png",
     ],
     color: "g1",
   },
