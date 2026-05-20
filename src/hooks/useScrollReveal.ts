@@ -21,13 +21,16 @@ export function useScrollReveal(options: Options = {}) {
           io.unobserve(el)
         })
       },
-      { threshold: options.threshold ?? 0.2, rootMargin: options.rootMargin },
+      {
+        threshold: options.threshold ?? 0.1,
+        rootMargin: options.rootMargin ?? "0px 0px -50px 0px",
+      },
     )
 
     const inViewport = (el: HTMLElement) => {
       const rect = el.getBoundingClientRect()
       const vh = window.innerHeight || document.documentElement.clientHeight
-      return rect.top < vh * 0.95 && rect.bottom > 0
+      return rect.top < vh
     }
 
     const observeItems = () => {
@@ -46,6 +49,7 @@ export function useScrollReveal(options: Options = {}) {
     }
 
     observeItems()
+    requestAnimationFrame(() => observeItems())
 
     const mo = new MutationObserver(() => observeItems())
     mo.observe(root, { childList: true, subtree: true })

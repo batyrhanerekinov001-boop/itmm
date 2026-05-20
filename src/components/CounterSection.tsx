@@ -38,12 +38,18 @@ export function CounterSection({ t }: Props) {
       (entries) => {
         if (entries.some((e) => e.isIntersecting)) {
           setStarted(true)
+          io.unobserve(el)
         }
       },
-      { threshold: 0.25 },
+      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
     )
 
-    io.observe(el)
+    const rect = el.getBoundingClientRect()
+    if (rect.top < window.innerHeight) {
+      setStarted(true)
+    } else {
+      io.observe(el)
+    }
     return () => io.disconnect()
   }, [started])
 
