@@ -36,6 +36,12 @@ export default function App() {
   const [modalOpen, setModalOpen] = useState(false)
   const { lang, changeLang } = useLanguage()
   const t = translations[lang]
+  const notFoundText =
+    lang === "KZ"
+      ? { title: "Бет табылмады", button: "Басты бетке" }
+      : lang === "EN"
+        ? { title: "Page not found", button: "Back to home" }
+        : { title: "Страница не найдена", button: "На главную" }
 
   const isKnownPage = useMemo(() => page !== "notFound", [page])
 
@@ -88,6 +94,7 @@ export default function App() {
       <div className={page === "cases" ? "page active" : "page"}>
         <CasesPage
           t={t}
+          lang={lang}
           activeCase={activeCase}
           onSelectCase={setActiveCase}
           onNavigateToContact={() => showPage("contact")}
@@ -99,15 +106,15 @@ export default function App() {
       <div className={page === "notFound" ? "page active" : "page"}>
         <div className="page-404" style={{ minHeight: "100vh" }}>
           <div className="code">404</div>
-          <h1>Страница не найдена</h1>
+          <h1>{notFoundText.title}</h1>
           <button className="btn-primary" onClick={() => showPage("home")}>
-            На главную
+            {notFoundText.button}
           </button>
         </div>
       </div>
 
       <FloatingWhatsAppButton t={t} />
-      <CookieBanner />
+      <CookieBanner lang={lang} />
       <Modal open={modalOpen} t={t} onClose={() => setModalOpen(false)} />
     </>
   )

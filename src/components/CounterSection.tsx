@@ -12,7 +12,7 @@ type CounterItem = {
 }
 
 function formatValue(value: number) {
-  return new Intl.NumberFormat("ru-RU").format(value)
+  return new Intl.NumberFormat().format(value)
 }
 
 export function CounterSection({ t }: Props) {

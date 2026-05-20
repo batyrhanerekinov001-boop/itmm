@@ -26,7 +26,7 @@ export function TopCasesSection({ t, onShowCase }: Props) {
           <div className="blog-card-img g1" style={{ padding: 0, overflow: "hidden" }}>
             <img
               src="/cases/construction.avif"
-              alt="Строительство"
+              alt={section.cards[0].title}
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
           </div>
@@ -47,7 +47,7 @@ export function TopCasesSection({ t, onShowCase }: Props) {
           >
             <img
               src="/cases/oil.avif"
-              alt="Нефтегаз Teboil — система учёта нефтепродуктов"
+              alt={section.cards[1].title}
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
           </div>

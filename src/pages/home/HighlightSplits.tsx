@@ -44,7 +44,7 @@ export function HighlightSplits({ t, onShowCase }: Props) {
           >
             <img
               src="/cases/construction.avif"
-              alt="Личный кабинет подрядчика"
+              alt={section.construction.title}
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
           </div>
@@ -80,7 +80,7 @@ export function HighlightSplits({ t, onShowCase }: Props) {
             >
               <img
                 src="/cases/oil.avif"
-                alt="Нефтегаз"
+                alt={section.oil.title}
                 style={{
                   position: "absolute",
                   inset: 0,

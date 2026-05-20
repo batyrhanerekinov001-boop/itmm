@@ -1,19 +1,54 @@
 import { useEffect, useState } from "react"
 import { Footer } from "../components/Footer"
-import { caseTabs, cases } from "../data/cases"
+import { getCaseTabs, getCases } from "../data/cases"
 import type { Translations } from "../i18n/translations"
+import type { Lang } from "../i18n/translations"
 import type { CaseId } from "../types"
 
 type Props = {
   t: Translations
+  lang: Lang
   activeCase: CaseId
   onSelectCase: (id: CaseId) => void
   onNavigateToContact: () => void
 }
 
-export function CasesPage({ t, activeCase, onSelectCase, onNavigateToContact }: Props) {
-  const current = cases.find((c) => c.id === activeCase) ?? cases[0]
+export function CasesPage({ t, lang, activeCase, onSelectCase, onNavigateToContact }: Props) {
+  const tabs = getCaseTabs(lang)
+  const items = getCases(lang)
+  const current = items.find((c) => c.id === activeCase) ?? items[0]
   const [lightboxSrc, setLightboxSrc] = useState<string | null>(null)
+
+  const labels =
+    lang === "KZ"
+      ? {
+          description: "Сипаттама",
+          metric: "Метрика",
+          problem: "Мәселе",
+          solution: "Шешім",
+          gallery: "Галерея",
+          results: "Нәтижелер",
+          ctaButton: "Ұқсас жобаны талқылау",
+        }
+      : lang === "EN"
+        ? {
+            description: "Description",
+            metric: "Metric",
+            problem: "Problem",
+            solution: "Solution",
+            gallery: "Gallery",
+            results: "Results",
+            ctaButton: "Discuss a similar project",
+          }
+        : {
+            description: "Описание",
+            metric: "Метрика",
+            problem: "Проблема",
+            solution: "Решение",
+            gallery: "Галерея",
+            results: "Результаты",
+            ctaButton: "Обсудить похожий проект",
+          }
 
   useEffect(() => {
     if (!lightboxSrc) return
@@ -29,7 +64,7 @@ export function CasesPage({ t, activeCase, onSelectCase, onNavigateToContact }: 
       <div className="case-page-hero">
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div className="case-tabs">
-            {caseTabs.map((tab) => (
+            {tabs.map((tab) => (
               <button
                 key={tab.id}
                 className={`case-tab${tab.id === activeCase ? " active" : ""}`}
@@ -48,18 +83,18 @@ export function CasesPage({ t, activeCase, onSelectCase, onNavigateToContact }: 
       <div className="case-body">
         <div className="case-two-col" style={{ marginTop: 40 }}>
           <div>
-            <div className="col-head">Описание</div>
+            <div className="col-head">{labels.description}</div>
             <p>{current.description}</p>
           </div>
           <div>
-            <div className="col-head">Метрика</div>
+            <div className="col-head">{labels.metric}</div>
             <p>{current.metric}</p>
           </div>
         </div>
 
         <div className="case-two-col" style={{ marginTop: 40 }}>
           <div>
-            <div className="col-head">Проблема</div>
+            <div className="col-head">{labels.problem}</div>
             <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
               {current.problem.map((p) => (
                 <li
@@ -80,13 +115,13 @@ export function CasesPage({ t, activeCase, onSelectCase, onNavigateToContact }: 
             </ul>
           </div>
           <div>
-            <div className="col-head">Решение</div>
+            <div className="col-head">{labels.solution}</div>
             <p>{current.solution}</p>
           </div>
         </div>
 
         <div style={{ marginTop: 40 }}>
-          <div className="col-head">Галерея</div>
+          <div className="col-head">{labels.gallery}</div>
           <div
             style={{
               display: "grid",
@@ -116,7 +151,7 @@ export function CasesPage({ t, activeCase, onSelectCase, onNavigateToContact }: 
         </div>
 
         <div style={{ marginTop: 40 }}>
-          <div className="col-head">Результаты</div>
+          <div className="col-head">{labels.results}</div>
           <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
             {current.results.map((r) => (
               <li
@@ -142,7 +177,7 @@ export function CasesPage({ t, activeCase, onSelectCase, onNavigateToContact }: 
         <h2>{t.cases.cta.title}</h2>
         <p>{t.cases.cta.text}</p>
         <button className="btn-white" onClick={onNavigateToContact}>
-          Обсудить похожий проект
+          {labels.ctaButton}
         </button>
       </div>
 
