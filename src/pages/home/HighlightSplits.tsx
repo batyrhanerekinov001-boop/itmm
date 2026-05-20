@@ -1,6 +1,5 @@
 import type { CaseId } from "../../types"
 import type { Translations } from "../../i18n/translations"
-import { useScrollReveal } from "../../hooks/useScrollReveal"
 
 type Props = {
   t: Translations
@@ -9,14 +8,12 @@ type Props = {
 
 export function HighlightSplits({ t, onShowCase }: Props) {
   const section = t.home.highlights
-  const revealRef1 = useScrollReveal()
-  const revealRef2 = useScrollReveal()
 
   return (
     <>
-      <div style={{ maxWidth: 1200, margin: "0 auto" }} ref={revealRef1}>
+      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <div className="split-section">
-          <div className="split-content fade-in-up" style={{ transitionDelay: "0ms" }}>
+          <div className="split-content">
             <div className="section-eyebrow">
               {section.construction.eyebrow}
             </div>
@@ -42,8 +39,8 @@ export function HighlightSplits({ t, onShowCase }: Props) {
             </div>
           </div>
           <div
-            className="split-visual sv-blue fade-in-up"
-            style={{ padding: 0, overflow: "hidden", transitionDelay: "100ms" }}
+            className="split-visual sv-blue"
+            style={{ padding: 0, overflow: "hidden" }}
           >
             <img
               src="/cases/construction.avif"
@@ -61,9 +58,9 @@ export function HighlightSplits({ t, onShowCase }: Props) {
           borderBottom: "1px solid var(--border)",
         }}
       >
-        <div style={{ maxWidth: 1200, margin: "0 auto" }} ref={revealRef2}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div className="split-section reverse">
-            <div className="split-content fade-in-up" style={{ transitionDelay: "0ms" }}>
+            <div className="split-content">
               <div className="section-eyebrow">{section.oil.eyebrow}</div>
               <div className="section-title">
                 {section.oil.title}
@@ -74,12 +71,11 @@ export function HighlightSplits({ t, onShowCase }: Props) {
               </button>
             </div>
             <div
-              className="split-visual sv-orange fade-in-up"
+              className="split-visual sv-orange"
               style={{
                 padding: 0,
                 overflow: "hidden",
                 position: "relative",
-                transitionDelay: "100ms",
               }}
             >
               <img

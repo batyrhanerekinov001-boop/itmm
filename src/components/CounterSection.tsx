@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react"
+import { useMemo } from "react"
 import type { Translations } from "../i18n/translations"
 
 type Props = {
@@ -26,61 +26,13 @@ export function CounterSection({ t }: Props) {
     [t],
   )
 
-  const ref = useRef<HTMLDivElement | null>(null)
-  const [started, setStarted] = useState(false)
-  const [values, setValues] = useState<number[]>(() => items.map(() => 0))
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el || started) return
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((e) => e.isIntersecting)) {
-          setStarted(true)
-          io.unobserve(el)
-        }
-      },
-      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
-    )
-
-    const rect = el.getBoundingClientRect()
-    if (rect.top < window.innerHeight) {
-      setStarted(true)
-    } else {
-      io.observe(el)
-    }
-    return () => io.disconnect()
-  }, [started])
-
-  useEffect(() => {
-    if (!started) return
-
-    const durationMs = 2000
-    const start = performance.now()
-    let raf = 0
-
-    const tick = (now: number) => {
-      const progress = Math.min(1, (now - start) / durationMs)
-      setValues(items.map((item) => Math.round(item.value * progress)))
-      if (progress < 1) raf = requestAnimationFrame(tick)
-    }
-
-    raf = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(raf)
-  }, [items, started])
-
   return (
-    <div ref={ref} className="counter-section">
+    <div className="counter-section">
       <div className="counter-grid">
         {items.map((item, i) => (
-          <div
-            className={`counter-item fade-in-up${started ? " visible" : ""}`}
-            style={{ transitionDelay: `${i * 100}ms` }}
-            key={item.label}
-          >
+          <div className="counter-item" key={item.label}>
             <div className="counter-value">
-              {formatValue(values[i] ?? 0)}
+              {formatValue(item.value)}
               {item.suffix}
             </div>
             <div className="counter-label">{item.label}</div>

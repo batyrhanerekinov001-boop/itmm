@@ -1,6 +1,5 @@
 import type { CaseId } from "../../types"
 import type { Translations } from "../../i18n/translations"
-import { useScrollReveal } from "../../hooks/useScrollReveal"
 
 type Props = {
   t: Translations
@@ -9,10 +8,9 @@ type Props = {
 
 export function TopCasesSection({ t, onShowCase }: Props) {
   const section = t.home.topCases
-  const revealRef = useScrollReveal()
 
   return (
-    <div className="section-wrap" ref={revealRef}>
+    <div className="section-wrap">
       <div className="section-eyebrow">{section.eyebrow}</div>
       <div className="section-title">
         {section.title[0]}
@@ -22,8 +20,7 @@ export function TopCasesSection({ t, onShowCase }: Props) {
 
       <div className="blog-grid">
         <div
-          className="blog-card fade-in-up"
-          style={{ transitionDelay: "0ms" }}
+          className="blog-card"
           onClick={() => onShowCase("construction")}
         >
           <div className="blog-card-img g1" style={{ padding: 0, overflow: "hidden" }}>
@@ -41,8 +38,7 @@ export function TopCasesSection({ t, onShowCase }: Props) {
         </div>
 
         <div
-          className="blog-card fade-in-up"
-          style={{ transitionDelay: "100ms" }}
+          className="blog-card"
           onClick={() => onShowCase("oil")}
         >
           <div
@@ -62,8 +58,7 @@ export function TopCasesSection({ t, onShowCase }: Props) {
         </div>
 
         <div
-          className="blog-card fade-in-up"
-          style={{ transitionDelay: "200ms" }}
+          className="blog-card"
           onClick={() => onShowCase("retail")}
         >
           <div className="blog-card-img g3" style={{ height: 140 }}>
