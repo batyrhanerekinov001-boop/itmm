@@ -57,6 +57,34 @@ export function CasesPage({ t, activeCase, onSelectCase, onNavigateToContact }: 
           </div>
         </div>
 
+        <div className="case-two-col" style={{ marginTop: 40 }}>
+          <div>
+            <div className="col-head">Проблема</div>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+              {current.problem.map((p) => (
+                <li
+                  key={p}
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    gap: 10,
+                    padding: "12px 0",
+                    borderBottom: "1px solid var(--border)",
+                    color: "var(--sub)",
+                  }}
+                >
+                  <span style={{ color: "#dc2626", fontWeight: 900, lineHeight: 1.2 }}>✗</span>
+                  <span style={{ color: "var(--sub)" }}>{p}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <div className="col-head">Решение</div>
+            <p>{current.solution}</p>
+          </div>
+        </div>
+
         <div style={{ marginTop: 40 }}>
           <div className="col-head">Галерея</div>
           <div
@@ -102,7 +130,7 @@ export function CasesPage({ t, activeCase, onSelectCase, onNavigateToContact }: 
                   color: "var(--sub)",
                 }}
               >
-                <span style={{ color: "var(--blue)", fontWeight: 900, lineHeight: 1.2 }}>✓</span>
+                <span style={{ color: "#16a34a", fontWeight: 900, lineHeight: 1.2 }}>✓</span>
                 <span style={{ color: "var(--sub)" }}>{r}</span>
               </li>
             ))}
