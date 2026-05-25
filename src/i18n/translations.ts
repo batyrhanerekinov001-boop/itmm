@@ -294,6 +294,10 @@ export const translations: Record<Lang, Translations> = {
             title: "Video Analytics Pipeline",
             desc: "Автоматический анализ видеопотоков с применением компьютерного зрения и ИИ",
           },
+          {
+            title: "QSentinel",
+            desc: "Квантовый мониторинг ПХГ и газопроводов — квантовая гравиметрия, DAS и AI в одном решении",
+          },
         ],
       },
       faq: {
@@ -708,6 +712,10 @@ translations.KZ = {
           title: "Video Analytics Pipeline",
           desc: "Компьютерлік көру және ЖИ көмегімен видеопотоктарды автоматты талдау",
         },
+        {
+          title: "QSentinel",
+          desc: "ЖЖҚ мен газ құбырларын кванттық мониторингтеу — бір шешімдегі кванттық гравиметрия, DAS және AI",
+        },
       ],
     },
     faq: {
@@ -1121,6 +1129,10 @@ translations.EN = {
         {
           title: "Video Analytics Pipeline",
           desc: "Automated video stream analysis using computer vision and AI",
+        },
+        {
+          title: "QSentinel",
+          desc: "Quantum monitoring for UGS facilities and gas pipelines — quantum gravimetry, DAS, and AI in one solution",
         },
       ],
     },
