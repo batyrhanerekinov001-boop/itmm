@@ -150,7 +150,7 @@ export const translations: Record<Lang, Translations> = {
       openMenu: "Открыть меню",
       closeMenu: "Закрыть меню",
     },
-    footer: { rights: "© 2025 ITMM. Все права защищены." },
+    footer: { rights: "© 2023 – 2026 ITMM. Все права защищены." },
     home: {
       hero: {
         eyebrow: "🇰🇿 Казахстанская IT-компания",
@@ -564,7 +564,7 @@ translations.KZ = {
     openMenu: "Мәзірді ашу",
     closeMenu: "Мәзірді жабу",
   },
-  footer: { rights: "© 2025 ITMM. Барлық құқықтар қорғалған." },
+  footer: { rights: "© 2023 – 2026 ITMM. Барлық құқықтар қорғалған." },
   home: {
     ...translations.RU.home,
     hero: {
@@ -981,7 +981,7 @@ translations.EN = {
     openMenu: "Open menu",
     closeMenu: "Close menu",
   },
-  footer: { rights: "© 2025 ITMM. All rights reserved." },
+  footer: { rights: "© 2023 – 2026 ITMM. All rights reserved." },
   home: {
     ...translations.RU.home,
     hero: {
