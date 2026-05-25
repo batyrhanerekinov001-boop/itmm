@@ -1,11 +1,11 @@
-import { Brain, Cog, Copy, Glasses, Globe, Scale, Shield, Video, Zap } from "lucide-react"
+import { Brain, Copy, Glasses, Globe, Scale, Shield, Video, Zap } from "lucide-react"
 import type { Translations } from "../../i18n/translations"
 
 type Props = {
   t: Translations
 }
 
-const icons = [Brain, Glasses, Shield, Globe, Zap, Cog, Scale, Copy, Video] as const
+const icons = [Brain, Glasses, Shield, Globe, Zap, Scale, Copy, Video] as const
 
 export function TechnologiesSection({ t }: Props) {
   const section = t.home.technologies

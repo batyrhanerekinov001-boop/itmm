@@ -283,10 +283,6 @@ export const translations: Record<Lang, Translations> = {
             desc: "Цифровизация энергосистем и климатических решений",
           },
           {
-            title: "Робототехника",
-            desc: "Интеграция роботизированных систем в производство и логистику",
-          },
-          {
             title: "Этика ИИ",
             desc: "Аудит и разработка стандартов для AI-систем",
           },
@@ -701,10 +697,6 @@ translations.KZ = {
           desc: "Энергожүйелерді және климаттық шешімдерді цифрландыру",
         },
         {
-          title: "Робототехника",
-          desc: "Өндіріс пен логистикаға роботтандырылған жүйелерді интеграциялау",
-        },
-        {
           title: "ЖИ этикасы",
           desc: "AI жүйелері үшін стандарттарды аудиттеу және әзірлеу",
         },
@@ -1117,10 +1109,6 @@ translations.EN = {
         {
           title: "Renewable energy",
           desc: "Digitalization of energy systems and climate solutions",
-        },
-        {
-          title: "Robotics",
-          desc: "Integrating robotic systems into production and logistics",
         },
         {
           title: "AI ethics",
